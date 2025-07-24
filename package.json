@@ -1,27 +1,39 @@
 {
-  "name": "woym",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "check": "biome check --write .",
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
-    "dev:web": "turbo -F web dev",
-    "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F server db:push",
-    "db:studio": "turbo -F server db:studio",
-    "db:generate": "turbo -F server db:generate",
-    "db:migrate": "turbo -F server db:migrate"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "turbo": "^2.5.4",
-    "@biomejs/biome": "^2.0.0"
-  },
-  "packageManager": "pnpm@10.13.1"
+	"name": "woym",
+	"private": true,
+	"engines": {
+		"node": ">=22.14.0",
+		"pnpm": ">=9.6.0"
+	},
+	"scripts": {
+		"auth:generate": "pnpm -F @woym/auth generate",
+		"build": "turbo build",
+		"check": "biome check --write .",
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"clean:workspaces": "turbo run clean",
+		"cf-typegen": "pnpm -F @woym/workers-types cf-typegen",
+		"dev": "turbo watch dev --continue",
+		"dev:native": "turbo -F @woym/app dev",
+		"dev:server": "turbo -F @woym/server dev",
+		"dev:web": "turbo -F @woym/web dev",
+		"db:generate": "turbo -F @woym/db db:generate",
+		"db:migrate": "turbo -F @woym/db db:migrate",
+		"db:push": "turbo -F @woym/db db:push",
+		"db:studio": "turbo -F @woym/db db:studio",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --write",
+		"typecheck": "turbo typecheck",
+		"w:auth": "pnpm -F @woym/auth",
+		"w:db": "pnpm -F @woym/db",
+		"w:native": "pnpm -F @woym/app",
+		"w:server": "pnpm -F @woym/server",
+		"w:web": "pnpm -F @woym/web"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.1.2",
+		"@turbo/gen": "^2.5.5",
+		"turbo": "^2.5.4",
+		"typescript": "catalog:"
+	},
+	"packageManager": "pnpm@10.13.1"
 }

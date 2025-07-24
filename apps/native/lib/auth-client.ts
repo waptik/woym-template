@@ -1,13 +1,11 @@
-import { createAuthClient } from "better-auth/react";
-import { expoClient } from "@better-auth/expo/client";
-import * as SecureStore from "expo-secure-store";
+import { getExpoAuthClient } from "@woym/auth/expo"
+import * as SecureStore from "expo-secure-store"
+import { getBaseUrl } from "../utils/base-url"
 
-export const authClient = createAuthClient({
-  baseURL: process.env.EXPO_PUBLIC_SERVER_URL,
-  plugins: [
-    expoClient({
-      storagePrefix: "my-better-t-app",
-      storage: SecureStore,
-    }),
-  ],
-});
+const baseUrl = getBaseUrl()
+
+console.log("[AuthClient] Base URL:", baseUrl)
+export const authClient = getExpoAuthClient({
+	baseURL: baseUrl,
+	storage: SecureStore,
+})

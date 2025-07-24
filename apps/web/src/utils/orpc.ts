@@ -1,36 +1,32 @@
-import { createORPCClient } from "@orpc/client";
-import { RPCLink } from "@orpc/client/fetch";
-import { createTanstackQueryUtils } from "@orpc/tanstack-query";
-import { QueryCache, QueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
-import type { appRouter } from "../../../server/src/routers/index";
-import type { RouterClient } from "@orpc/server";
+import { QueryCache } from "@tanstack/react-query"
+import type { RouterClient } from "@woym/api"
+import { createQueryClient } from "@woym/api/client"
+import { createORPC } from "@woym/api/react"
+import type { appRouter } from "@woym/api/server"
+import { toast } from "sonner"
+import { oRpcURL } from "@/lib/constants"
 
-export const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    onError: (error) => {
-      toast.error(`Error: ${error.message}`, {
-        action: {
-          label: "retry",
-          onClick: () => {
-            queryClient.invalidateQueries();
-          },
-        },
-      });
-    },
-  }),
-});
+export const queryClient = createQueryClient({
+	queryCache: new QueryCache({
+		onError: (error) => {
+			toast.error(`Error: ${error.message}`, {
+				action: {
+					label: "retry",
+					onClick: () => {
+						queryClient.invalidateQueries()
+					},
+				},
+			})
+		},
+	}),
+})
 
-export const link = new RPCLink({
-  url: `${import.meta.env.VITE_SERVER_URL}/rpc`,
-  fetch(url, options) {
-    return fetch(url, {
-      ...options,
-      credentials: "include",
-    });
-  },
-});
+// Create ORPC instance with explicit typing
+const orpcInstance = createORPC({
+	url: oRpcURL,
+	isWeb: true,
+})
 
-export const client: RouterClient<typeof appRouter> = createORPCClient(link)
-
-export const orpc = createTanstackQueryUtils(client)
+// Export with correct types
+export const client = orpcInstance.client as RouterClient<typeof appRouter>
+export const orpc = orpcInstance.orpc

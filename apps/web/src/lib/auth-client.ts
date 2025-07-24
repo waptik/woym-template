@@ -1,6 +1,4 @@
-import { createAuthClient } from "better-auth/react";
+import { getAuthClient } from "@woym/auth/react"
+import { serverURL } from "./constants"
 
-export const authClient = createAuthClient({
-  baseURL:
-      import.meta.env.VITE_SERVER_URL,
-});
+export const authClient = getAuthClient(serverURL)

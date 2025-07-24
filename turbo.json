@@ -3,19 +3,64 @@
 	"ui": "tui",
 	"tasks": {
 		"build": {
-			"dependsOn": ["^build"],
-			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": ["dist/**"]
+			"dependsOn": [
+				"^build"
+			],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env*"
+			],
+			"outputs": [
+				"dist/**",
+				"ios/**",
+				"android/**",
+				".expo/**",
+				".cache/**",
+				".wrangler/**"
+			]
 		},
-		"lint": {
-			"dependsOn": ["^lint"]
+		"//#knip": {},
+		"//#lint": {},
+		"//#lint:fix": {
+			"cache": false
 		},
-		"check-types": {
-			"dependsOn": ["^check-types"]
+		"typecheck": {
+			"dependsOn": [
+				"^typecheck"
+			],
+			"outputs": [
+				"dist/**"
+			]
 		},
 		"dev": {
 			"cache": false,
 			"persistent": true
+		},
+		"@woym/api#dev": {
+			"cache": false,
+			"persistent": false
+		},
+		"@woym/auth#dev": {
+			"cache": false,
+			"persistent": false
+		},
+		"@woym/db#dev": {
+			"cache": false,
+			"persistent": false
+		},
+		"@woym/schemas#dev": {
+			"cache": false,
+			"persistent": false
+		},
+		"@woym/workers-types#dev": {
+			"cache": false,
+			"persistent": false
+		},
+		"clean": {
+			"cache": false
+		},
+		"//#clean": {
+			"cache": false
 		},
 		"db:push": {
 			"cache": false,
@@ -33,6 +78,5 @@
 			"cache": false,
 			"persistent": true
 		}
-		
-			}
+	}
 }

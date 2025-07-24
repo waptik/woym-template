@@ -1,0 +1,97 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!**/.next",
+			"!**/dist",
+			"!**/.turbo",
+			"!**/dev-dist",
+			"!**/.zed",
+			"!**/.contentlayer/**",
+			"!**/.vscode",
+			"!**/routeTree.gen.ts",
+			"!**/package.json.hbs",
+			"!**/src-tauri",
+			"!**/.nuxt",
+			"!bts.jsonc",
+			"!**/.expo",
+			"!**/.wrangler",
+			"!packages/ui/src/styles.css" // Biome can't parse the oddities of Tailwind syntax
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 120
+	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"noBannedTypes": "off",
+				"noUselessTernary": "off"
+			},
+			"a11y": {
+				"useKeyWithClickEvents": "off"
+			},
+			"correctness": {
+				"noUnusedVariables": "error",
+				"noUnusedImports": "error",
+				"noUnusedPrivateClassMembers": "error",
+				"useExhaustiveDependencies": "info",
+				"noUnusedLabels": {
+					"level": "warn",
+					"options": {}
+				},
+				"useYield": "off"
+			},
+			"nursery": {
+				"noFloatingPromises": "error",
+				"useSortedClasses": {
+					"level": "warn",
+					"fix": "safe",
+					"options": {
+						"functions": ["clsx", "cva", "cn"]
+					}
+				}
+			},
+			"style": {
+				"noNonNullAssertion": "warn",
+				"useImportType": "error",
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "warn",
+				"noArrayIndexKey": "warn",
+				"noShadowRestrictedNames": "warn"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "asNeeded"
+		}
+	},
+	"json": {
+		"formatter": {}
+	}
+}

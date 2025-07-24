@@ -1,0 +1,53 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": [
+		"//"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": [
+				"@woym/db#build",
+				"@woym/auth#build",
+				"@woym/api#build"
+			],
+			"outputs": [
+				"dist/**",
+				".expo/**",
+				".cache/**",
+				".expo-shared/**",
+				"ios/**",
+				"android/**"
+			],
+			"env": [
+				".env.production.local",
+				".env.production",
+				".env.local",
+				".env"
+			]
+		},
+		"dev": {
+			"outputs": [
+				"dist/**",
+				".expo/**",
+				".cache/**",
+				".expo-shared/**",
+				"ios/**",
+				"android/**"
+			],
+			"dependsOn": [
+				"@woym/db#dev",
+				"@woym/auth#dev",
+				"@woym/api#dev"
+			],
+			"cache": false,
+			"persistent": true,
+			"interactive": true,
+			"env": [
+				".env.production.local",
+				".env.production",
+				".env.local",
+				".env"
+			]
+		}
+	}
+}

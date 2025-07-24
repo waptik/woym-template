@@ -1,0 +1,39 @@
+{
+	"name": "@woym/api",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./client": "./src/client/index.ts",
+		"./lib": "./src/lib.ts",
+		"./react": "./src/react.tsx",
+		"./server": "./src/server/index.ts",
+		"./package.json": "./package.json"
+	},
+	"license": "MIT",
+	"scripts": {
+		"build": "tsdown",
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"dev": "tsdown",
+		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
+	},
+	"dependencies": {
+		"@ai-sdk/google": "^1.2.3",
+		"@orpc/client": "catalog:",
+		"@orpc/server": "catalog:",
+		"@orpc/tanstack-query": "catalog:",
+		"@woym/auth": "workspace:*",
+		"@woym/db": "workspace:*",
+		"@woym/workers-types": "workspace:*",
+		"ai": "^4.3.16",
+		"hono": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@tanstack/react-query": "catalog:",
+		"@woym/tsconfig": "workspace:*",
+		"tsdown": "catalog:",
+		"typescript": "catalog:"
+	}
+}

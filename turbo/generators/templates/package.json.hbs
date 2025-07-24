@@ -1,0 +1,30 @@
+{
+"name": "@woym/{{ name }}",
+"private": true,
+"version": "0.1.0",
+"type": "module",
+"main": "./dist/index.cjs",
+"module": "./dist/index.js",
+"types": "./dist/index.d.cts",
+"exports": {
+".": "./src/index.ts",
+"./package.json": "./package.json"
+},
+"main": "./dist/index.js",
+"module": "./dist/index.js",
+"types": "./dist/index.d.ts",
+"license": "MIT",
+"scripts": {
+"build": "tsdown",
+"clean": "git clean -xdf .cache .turbo dist node_modules",
+"dev": "tsdown --watch",
+"typecheck": "tsc --noEmit --emitDeclarationOnly false"
+},
+"dependencies": {},
+"devDependencies": {
+"@types/node": "catalog:",
+"@woym/tsconfig": "workspace:*",
+"tsdown": "catalog:",
+"typescript": "catalog:"
+}
+}

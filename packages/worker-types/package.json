@@ -1,0 +1,27 @@
+{
+	"name": "@woym/workers-types",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./package.json": "./package.json"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"license": "MIT",
+	"scripts": {
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
+	},
+	"dependencies": {
+		"wrangler": "^4.25.1"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"@woym/tsconfig": "workspace:*",
+		"typescript": "catalog:"
+	}
+}

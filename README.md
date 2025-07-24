@@ -69,7 +69,7 @@ woym/
 - `pnpm build`: Build all applications
 - `pnpm dev:web`: Start only the web application
 - `pnpm dev:server`: Start only the server
-- `pnpm check-types`: Check TypeScript types across all apps
+- `pnpm typecheck`: Check TypeScript types across all apps
 - `pnpm dev:native`: Start the React Native/Expo development server
 - `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI

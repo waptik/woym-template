@@ -1,2 +1,40 @@
+# dependencies
 node_modules
 .turbo
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+**/.dev.vars
+**/.dev.vars.*
+**/.env
+**/.env.*
+
+# wrangler
+**/wrangler.*
+**/.wrangler
+
+
+
+# caches
+.eslintcache
+**/.cache
+**/*.cache*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store

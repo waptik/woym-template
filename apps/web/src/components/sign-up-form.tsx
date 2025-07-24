@@ -1,18 +1,17 @@
-import { authClient } from "@/lib/auth-client";
+/** biome-ignore-all lint/nursery/noFloatingPromises: <explanation> */
 import { useForm } from "@tanstack/react-form";
 import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
-import z from "zod";
+import z from "zod/v4";
+import { authClient } from "@/lib/auth-client";
 import Loader from "./loader";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export default function SignUpForm({
-	onSwitchToSignIn,
-}: {
-	onSwitchToSignIn: () => void;
-}) {
+export default function SignUpForm(
+	{ onSwitchToSignIn }: { onSwitchToSignIn: () => void },
+) {
 	const navigate = useNavigate({
 		from: "/",
 	});
@@ -48,7 +47,10 @@ export default function SignUpForm({
 			onSubmit: z.object({
 				name: z.string().min(2, "Name must be at least 2 characters"),
 				email: z.email("Invalid email address"),
-				password: z.string().min(8, "Password must be at least 8 characters"),
+				password: z.string().min(
+					8,
+					"Password must be at least 8 characters",
+				),
 			}),
 		},
 	});
@@ -58,8 +60,10 @@ export default function SignUpForm({
 	}
 
 	return (
-		<div className="mx-auto w-full mt-10 max-w-md p-6">
-			<h1 className="mb-6 text-center text-3xl font-bold">Create Account</h1>
+		<div className="mx-auto mt-10 w-full max-w-md p-6">
+			<h1 className="mb-6 text-center font-bold text-3xl">
+				Create Account
+			</h1>
 
 			<form
 				onSubmit={(e) => {
@@ -79,10 +83,14 @@ export default function SignUpForm({
 									name={field.name}
 									value={field.state.value}
 									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
+									onChange={(e) =>
+										field.handleChange(e.target.value)}
 								/>
 								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
+									<p
+										key={error?.message}
+										className="text-red-500"
+									>
 										{error?.message}
 									</p>
 								))}
@@ -102,10 +110,14 @@ export default function SignUpForm({
 									type="email"
 									value={field.state.value}
 									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
+									onChange={(e) =>
+										field.handleChange(e.target.value)}
 								/>
 								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
+									<p
+										key={error?.message}
+										className="text-red-500"
+									>
 										{error?.message}
 									</p>
 								))}
@@ -125,10 +137,14 @@ export default function SignUpForm({
 									type="password"
 									value={field.state.value}
 									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
+									onChange={(e) =>
+										field.handleChange(e.target.value)}
 								/>
 								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
+									<p
+										key={error?.message}
+										className="text-red-500"
+									>
 										{error?.message}
 									</p>
 								))}

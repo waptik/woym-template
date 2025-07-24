@@ -1,0 +1,35 @@
+{
+	"name": "@woym/tailwind-config",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		"./postcss": {
+			"types": "./dist/postcss.config.d.ts",
+			"default": "./postcss.config.ts"
+		},
+		"./web": {
+			"types": "./dist/web.d.ts",
+			"default": "./web.ts"
+		},
+		"./native": {
+			"types": "./dist/native.d.ts",
+			"default": "./native.ts"
+		}
+	},
+	"scripts": {
+		"clean": "git clean -xdf .cache .turbo node_modules",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"postcss": "^8.5.3",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@woym/tsconfig": "workspace:*",
+		"@types/node": "catalog:"
+	},
+	"peerDependencies": {
+		"tailwindcss": "^3.4.17 || ^4"
+	}
+}

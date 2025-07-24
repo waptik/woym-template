@@ -1,0 +1,40 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": [
+		"//"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": [
+				"@woym/api#build",
+				"@woym/auth#build"
+			],
+			"outputs": [
+				".nitro/**",
+				".output/**",
+				".tanstack/**",
+				"dist/**"
+			],
+			"env": [
+				".env.production.local",
+				".env.production",
+				".env.local",
+				".env"
+			]
+		},
+		"dev": {
+			"dependsOn": [
+				"@woym/auth#dev",
+				"@woym/api#dev"
+			],
+			"cache": false,
+			"persistent": true,
+			"env": [
+				".env.production.local",
+				".env.production",
+				".env.local",
+				".env"
+			]
+		}
+	}
+}
