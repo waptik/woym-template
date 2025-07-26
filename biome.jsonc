@@ -9,41 +9,45 @@
 	"files": {
 		"ignoreUnknown": false,
 		"experimentalScannerIgnores": [
-			"apps/**/node_modules/**",
-			"packages/**/node_modules/**",
-			"tooling/**/node_modules/**",
-			"**/node_modules/**",
-			"**/vendor/**",
-			"**/workers-types/**",
-			"**/public/**",
-			"**/dist/**",
-			"**/dev-dist/**",
-			"**/src-tauri/**",
-			"**/templates/**",
-			"**/patches/**",
-			"**/icons/**",
-			"**/.cache/**",
-			"**/.turbo/**",
-			"**/.zed/**",
-			"**/.contentlayer/**",
-			"**/.vscode/**",
-			"**/.wrangler/**",
-			"**/.nuxt/**",
-			"**/.next/**",
-			"**/.expo/**",
-			"**/.nitro/**",
-			"**/.output/**",
-			"**/.tanstack/**",
-			"**/routeTree.gen.ts",
-			"**/package.json",
-			"**/worker-configuration.d.ts",
-			"**/*.vars",
-			"**/*.env.*",
-			"**/*.yaml",
-			"**/*.json",
-			"bts.jsonc"
+			"bts.jsonc",
+			"pnpm-lock.yaml",
+			"pnpm-workspace.yaml",
+			"filtered.json",
+			"tracing.json"
 		],
-		"includes": ["**/src/**/*.{ts,tsx}"]
+		"includes": [
+			"**/src/**/*.{ts,tsx}",
+			"**/env.ts",
+			// to ignore all files/directories below:
+			"!**/node_modules/**",
+			"!**/vendor/**",
+			"!**/workers-types/**",
+			"!**/public/**",
+			"!**/dist/**",
+			"!**/dev-dist/**",
+			"!**/src-tauri/**",
+			"!**/templates/**",
+			"!**/patches/**",
+			"!**/icons/**",
+			"!**/.cache/**",
+			"!**/.turbo/**",
+			"!**/.zed/**",
+			"!**/.contentlayer/**",
+			"!**/.vscode/**",
+			"!**/.wrangler/**",
+			"!**/.expo/**",
+			"!**/.nitro/**",
+			"!**/.output/**",
+			"!**/.tanstack/**",
+			"!**/routeTree.gen.ts",
+			"!**/worker-configuration.d.ts",
+			"!**/*.vars",
+			"!**/*.env",
+			"!**/*.yaml",
+			"!**/*.json",
+			"!**/*.env.*",
+			"!**/*.tsdown.*"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -86,7 +90,11 @@
 					"level": "warn",
 					"fix": "safe",
 					"options": {
-						"functions": ["clsx", "cva", "cn"]
+						"functions": [
+							"clsx",
+							"cva",
+							"cn"
+						]
 					}
 				},
 				"noImportantStyles": "error"
