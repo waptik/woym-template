@@ -4,25 +4,27 @@
 	"version": "0.1.0",
 	"type": "module",
 	"exports": {
-		".": "./src/index.ts",
-		"./client": "./src/client/index.ts",
-		"./lib": "./src/lib.ts",
-		"./react": "./src/react.tsx",
-		"./server": "./src/server/index.ts",
+		".": "./dist/index.js",
+		"./client": "./dist/client.js",
+		"./handlers": "./dist/handlers.js",
+		"./lib": "./dist/lib.js",
+		"./react": "./dist/react.js",
+		"./server": "./dist/server.js",
 		"./package.json": "./package.json"
 	},
 	"license": "MIT",
 	"scripts": {
-		"build": "tsdown",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
-		"dev": "tsdown",
+		"dev": "tsdown --watch",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},
 	"dependencies": {
 		"@ai-sdk/google": "^1.2.3",
 		"@orpc/client": "catalog:",
+		"@orpc/openapi": "catalog:",
 		"@orpc/server": "catalog:",
 		"@orpc/tanstack-query": "catalog:",
+		"@orpc/zod": "catalog:",
 		"@woym/auth": "workspace:*",
 		"@woym/db": "workspace:*",
 		"@woym/workers-types": "workspace:*",
@@ -33,7 +35,9 @@
 	"devDependencies": {
 		"@tanstack/react-query": "catalog:",
 		"@woym/tsconfig": "workspace:*",
-		"tsdown": "catalog:",
 		"typescript": "catalog:"
-	}
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts"
 }

@@ -3,13 +3,12 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "wrangler deploy --dry-run",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "build": "vite build",
+    "clean": "git clean -xdf .cache .turbo .wrangler dist node_modules",
     "typecheck": "tsc --noEmit",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "dev": "vite --host 0.0.0.0 --port=3001",
-    "start": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "start": "wrangler dev --port=3001",
+    "deploy": " wrangler deploy"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.2.3",
@@ -27,7 +26,6 @@
     "@woym/tsconfig": "workspace:*",
     "@woym/schemas": "workspace:*",
     "@woym/workers-types": "workspace:*",
-    "tsdown": "^0.12.9",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-tsconfig-paths": "^5.1.4",

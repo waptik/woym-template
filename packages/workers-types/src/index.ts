@@ -8,8 +8,6 @@ import { env } from "cloudflare:workers"
 export type Bindings = CloudflareBindings
 export type Env = Cloudflare.Env
 
-console.info("[Cloudflare Workers] Environment variables initialized", env)
-
 export const cloudflare = {
 	env,
 	bindings: env as Bindings,

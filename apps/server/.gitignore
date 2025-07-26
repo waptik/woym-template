@@ -2,6 +2,8 @@
 dist/
 /build
 /out/
+.output
+.wrangler
 
 # dev
 .yarn/
@@ -15,7 +17,6 @@ dist/
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf
-.wrangler
 /.next/
 .vercel
 

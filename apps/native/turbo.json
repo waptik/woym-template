@@ -6,8 +6,6 @@
 	"tasks": {
 		"build": {
 			"dependsOn": [
-				"@woym/db#build",
-				"@woym/auth#build",
 				"@woym/api#build"
 			],
 			"outputs": [
@@ -35,8 +33,6 @@
 				"android/**"
 			],
 			"dependsOn": [
-				"@woym/db#dev",
-				"@woym/auth#dev",
 				"@woym/api#dev"
 			],
 			"cache": false,

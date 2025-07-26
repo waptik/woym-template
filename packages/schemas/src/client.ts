@@ -5,7 +5,7 @@ import BASE_ENV from "./base"
 export const webEnv = createEnv({
 	...BASE_ENV,
 	shared: {
-		VITE_SERVER_URL: z.string().url().describe("The URL of the server, used for API requests"),
+		VITE_API_URL: z.string().url().describe("The URL of the server, used for API requests"),
 	},
 	runtimeEnv: process.env,
 	server: {
@@ -14,6 +14,6 @@ export const webEnv = createEnv({
 	clientPrefix: "VITE_",
 	client: {
 		// Client-side environment variables
-		VITE_SERVER_URL: z.url(),
+		VITE_API_URL: z.url(),
 	},
 })

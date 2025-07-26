@@ -1,15 +1,15 @@
 import { defineConfig } from "tsdown"
 
 export default defineConfig({
+	// entry: ["./src/index.ts", "./src/schema/index.ts", "./src/db.ts", "./src/utils.ts"],
 	entry: {
 		index: "./src/index.ts",
 		schema: "./src/schema/index.ts",
 		db: "./src/db.ts",
 		utils: "./src/utils.ts",
-		worker: "./src/worker.ts",
+		env: "./env.ts",
 	},
-	format: ["cjs", "esm"],
-	dts: true,
 	exports: true,
-	unbundle: true,
+	// format: ["cjs", "esm"],
+	// unbundle: true,
 })

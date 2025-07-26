@@ -1,0 +1,17 @@
+/**
+ * Wrangler configuration to generate types for the Worker
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"compatibility_date": "2025-07-19",
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "woym-database",
+			"database_id": "NONE"
+		}
+	]
+}

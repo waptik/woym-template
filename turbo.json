@@ -16,7 +16,19 @@
 				"android/**",
 				".expo/**",
 				".cache/**",
-				".wrangler/**"
+				".wrangler/**",
+				".tanstack/**",
+				".output/**"
+			]
+		},
+		"cf-typegen": {
+			"dependsOn": [
+				"^cf-typegen"
+			],
+			"cache": true,
+			"persistent": false,
+			"outputs": [
+				"worker-configuration.d.ts"
 			]
 		},
 		"//#knip": {},
@@ -26,6 +38,7 @@
 		},
 		"typecheck": {
 			"dependsOn": [
+				"^build",
 				"^typecheck"
 			],
 			"outputs": [
@@ -33,14 +46,46 @@
 			]
 		},
 		"dev": {
+			"dependsOn": [
+				"^dev"
+			],
 			"cache": false,
-			"persistent": true
+			"persistent": false,
+			"outputs": [
+				"dist/**",
+				"ios/**",
+				"android/**",
+				".expo/**",
+				".cache/**",
+				".wrangler/**",
+				".tanstack/**",
+				".output/**"
+			]
 		},
-		"@woym/api#dev": {
+		"deploy": {
+			"dependsOn": [
+				"^deploy"
+			],
+			"cache": false,
+			"persistent": false,
+			"outputs": [
+				"dist/**",
+				"ios/**",
+				"android/**",
+				".expo/**",
+				".cache/**",
+				".wrangler/**",
+				".tanstack/**",
+				".output/**",
+				".nitro/**",
+				".turbo/**"
+			]
+		},
+		"@woym/schemas#dev": {
 			"cache": false,
 			"persistent": false
 		},
-		"@woym/auth#dev": {
+		"@woym/api#dev": {
 			"cache": false,
 			"persistent": false
 		},
@@ -48,11 +93,7 @@
 			"cache": false,
 			"persistent": false
 		},
-		"@woym/schemas#dev": {
-			"cache": false,
-			"persistent": false
-		},
-		"@woym/workers-types#dev": {
+		"@woym/auth#dev": {
 			"cache": false,
 			"persistent": false
 		},
@@ -70,13 +111,32 @@
 			"cache": false,
 			"persistent": true
 		},
-		"db:migrate": {
-			"cache": false,
-			"persistent": true
-		},
 		"db:generate": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"passThroughEnv": [
+				"CLOUDFLARE_ACCOUNT_ID",
+				"CLOUDFLARE_DATABASE_ID",
+				"CLOUDFLARE_D1_TOKEN"
+			]
+		},
+		"db:migrate": {
+			"cache": false,
+			"persistent": true,
+			"passThroughEnv": [
+				"CLOUDFLARE_ACCOUNT_ID",
+				"CLOUDFLARE_DATABASE_ID",
+				"CLOUDFLARE_D1_TOKEN"
+			]
+		},
+		"db:migrate:local": {
+			"cache": false,
+			"persistent": true,
+			"passThroughEnv": [
+				"CLOUDFLARE_ACCOUNT_ID",
+				"CLOUDFLARE_DATABASE_ID",
+				"CLOUDFLARE_D1_TOKEN"
+			]
 		}
 	}
 }

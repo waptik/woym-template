@@ -4,34 +4,14 @@
  */
 {
 	"$schema": "../../node_modules/wrangler/config-schema.json",
-	"name": "woym-server",
+	"name": "woym-template-api",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-07-19",
-	// "compatibility_date": "2025-06-15",
-	"compatibility_flags": ["nodejs_compat"],
-	"vars": {
-		// "NODE_ENV": "production"
-		// Add public environment variables here
-		// Example: "CORS_ORIGIN": "https://your-domain.com"
-	},
-	// For sensitive data, use:
-	// wrangler secret put SECRET_NAME
-	// Don't add secrets to "vars" - they're visible in the dashboard!
-	"env": {
-		"preview": {
-			"vars": {
-				"NODE_ENV": "development",
-				// Add public environment variables for preview here
-				"CORS_ORIGIN": "http://localhost:3000"
-			}
-		},
-		"development": {
-			"vars": {
-				"NODE_ENV": "development",
-				// Add public environment variables for development here
-				"CORS_ORIGIN": "http://localhost:3000"
-			}
-		}
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"observability": {
+		"enabled": true
 	},
 	// To set up D1 database:
 	// 1. Run: wrangler login
@@ -44,10 +24,9 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "woym-database",
-			"database_id": "ef5efb83-0e76-4245-abef-761a1972faf2",
-			"preview_database_id": "af02594d-5b48-41a5-848c-c5fd2f9a40d0",
-			"migrations_dir": "./src/db/migrations"
+			"database_name": "woymx-db-dev",
+			"database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
+			"preview_database_id": "e3aa21e7-336d-4cc0-a2f5-9cf9dfda918f",
 		}
 	]
 }

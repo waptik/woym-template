@@ -1,4 +1,5 @@
 import { getAuthClient } from "@woym/auth/react"
-import { serverURL } from "./constants"
+import { baseURL } from "./constants"
 
-export const authClient = getAuthClient(serverURL)
+const authURL = `${baseURL}/__/api/auth`
+export const authClient = getAuthClient(authURL)

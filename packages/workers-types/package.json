@@ -12,7 +12,8 @@
 	"types": "./dist/index.d.ts",
 	"license": "MIT",
 	"scripts": {
-		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"typegen": "wrangler types --env-interface CloudflareBindings",
+		"cf-typegen": "pnpm typegen && tsdown",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},

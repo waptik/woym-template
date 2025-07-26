@@ -4,39 +4,22 @@
 	"version": "0.1.0",
 	"type": "module",
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		},
-		"./db": {
-			"import": "./dist/db.js",
-			"require": "./dist/db.cjs"
-		},
-		"./schema": {
-			"import": "./dist/schema.js",
-			"require": "./dist/schema.cjs"
-		},
-		"./utils": {
-			"import": "./dist/utils.js",
-			"require": "./dist/utils.cjs"
-		},
-		"./worker": {
-			"import": "./dist/worker.js",
-			"require": "./dist/worker.cjs"
-		},
+		".": "./dist/index.js",
+		"./db": "./dist/db.js",
+		"./env": "./dist/env.js",
+		"./schema": "./dist/schema.js",
+		"./utils": "./dist/utils.js",
 		"./package.json": "./package.json"
 	},
 	"license": "MIT",
 	"scripts": {
-		"build": "tsdown",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"dev": "tsdown --watch",
-		"d1:apply": "wrangler d1 migrations apply woym-database",
-		"d1:apply:local": "pnpm run d1:apply --local",
+		"db:migrate": "wrangler d1 migrations apply woymx-db --remote",
+		"db:migrate:local": "wrangler d1 migrations apply database --local",
 		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},
 	"dependencies": {
@@ -51,11 +34,10 @@
 		"@types/node": "catalog:",
 		"@woym/tsconfig": "workspace:*",
 		"drizzle-kit": "^0.31.4",
-		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"wrangler": "catalog:"
 	},
-	"main": "./dist/index.cjs",
+	"main": "./dist/index.js",
 	"module": "./dist/index.js",
-	"types": "./dist/index.d.cts"
+	"types": "./dist/index.d.ts"
 }

@@ -12,11 +12,6 @@
 		"isolatedModules": true,
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
-		"lib": [
-			"dom",
-			"dom.iterable",
-			"esnext"
-		],
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"preserveWatchOutput": true,
@@ -32,6 +27,10 @@
 		"build",
 		"dist",
 		".next",
-		".expo"
+		".expo",
+		".tanstack",
+		".wrangler",
+		".cache",
+		".expo-shared"
 	]
 }

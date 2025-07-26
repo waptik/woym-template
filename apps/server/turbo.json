@@ -25,9 +25,9 @@
 				"dist/**"
 			],
 			"dependsOn": [
-				"@woym/db#dev",
+				"@woym/api#dev",
 				"@woym/auth#dev",
-				"@woym/api#dev"
+				"@woym/db#dev"
 			],
 			"cache": false,
 			"persistent": true,

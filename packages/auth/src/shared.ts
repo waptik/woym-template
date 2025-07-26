@@ -8,21 +8,22 @@ export interface AuthOptions {
 	baseUrl: string
 	productionUrl?: string
 	secret: string | undefined
-	origins?: string[]
-	enableOAuthProxy?: boolean
+	origins?: string
 }
 
 export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
-	const trustedOrigins = ["expo://", ...(options.origins || [])]
-	const plugins: BetterAuthOptions["plugins"] = [expo(), anonymous()]
-	if (options.enableOAuthProxy) {
-		plugins.push(
-			oAuthProxy({
-				currentURL: options.baseUrl,
-				productionURL: options.productionUrl,
-			}),
-		)
-	}
+	console.log("[auth.shared] Creating shared auth config with options:", options)
+	const origins = (options.origins || "").split(",").map((origin) => origin.trim())
+	const trustedOrigins = ["expo://", ...origins]
+	const plugins: BetterAuthOptions["plugins"] = [
+		oAuthProxy({
+			currentURL: options.baseUrl,
+			productionURL: options.productionUrl,
+		}),
+		expo(),
+		anonymous(),
+	]
+
 	const config = {
 		database: drizzleAdapter(db, {
 			provider: "sqlite",
@@ -32,6 +33,9 @@ export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
 		secret: options.secret,
 		plugins,
 		trustedOrigins,
+		advanced: {
+			crossSubDomainCookies: { enabled: true },
+		},
 	} satisfies BetterAuthOptions
 
 	return config

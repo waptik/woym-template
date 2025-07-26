@@ -1,22 +1,17 @@
 import { env } from "cloudflare:workers"
 import { type Auth, initAuth } from "@woym/auth"
 
-export const auth = initAuth({
-	baseUrl: env.BETTER_AUTH_URL,
+console.log("[server.auth] Initializing auth with environment variables:", {
+	baseUrl: env.API_URL,
 	secret: env.BETTER_AUTH_SECRET,
-	origins: [env.CORS_ORIGIN],
+	corsOrigin: env.CORS_ORIGINS,
+});
+
+
+export const auth = initAuth({
+	baseUrl: env.API_URL,
+	secret: env.BETTER_AUTH_SECRET,
+	origins: env.CORS_ORIGINS,
+	productionUrl: env.WEBSITE_URL,
 }) as Auth
 
-// export const auth = betterAuth({
-// 	database: drizzleAdapter(db, {
-// 		provider: "sqlite",
-// 		schema,
-// 	}),
-// 	trustedOrigins: [env.CORS_ORIGIN],
-// 	emailAndPassword: {
-// 		enabled: true,
-// 	},
-// 	secret: env.BETTER_AUTH_SECRET,
-// 	baseURL: env.BETTER_AUTH_URL,
-// 	plugins: [expo()],
-// })

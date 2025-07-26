@@ -43,8 +43,8 @@ export default function UserMenu() {
 						onClick={() => {
 							authClient.signOut({
 								fetchOptions: {
-									onSuccess: () => {
-										navigate({
+									onSuccess: async() => {
+										await navigate({
 											to: "/",
 										})
 									},

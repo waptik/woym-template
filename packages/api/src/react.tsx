@@ -1,6 +1,6 @@
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
-import { BatchLinkPlugin, DedupeRequestsPlugin } from "@orpc/client/plugins";
+import { DedupeRequestsPlugin } from "@orpc/client/plugins";
 import type { RouterClient } from "@orpc/server";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import type { Auth } from "@woym/auth";
@@ -50,9 +50,6 @@ function getRpcLink(opts: RpcLinkOptions) {
 			}
 			: undefined),
 		plugins: [
-			new BatchLinkPlugin({
-				groups: [{ condition: () => true, context: {} }],
-			}),
 			new DedupeRequestsPlugin({
 				filter: ({ request }) => request.method === "GET",
 				groups: [{ condition: () => true, context: {} }],

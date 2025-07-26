@@ -6,6 +6,8 @@ const { DB: _, ...globalEnv } = cloudflare.env
 
 const runtimeEnv = globalEnv as unknown as NodeJS.ProcessEnv
 
+console.log("[pkg.schemas.cfs] Environment variables initialized", runtimeEnv)
+
 export const workerEnv = createEnv({
 	...BASE_ENV,
 	runtimeEnv,

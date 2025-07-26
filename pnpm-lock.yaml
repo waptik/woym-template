@@ -9,10 +9,16 @@ catalogs:
     '@orpc/client':
       specifier: 1.7.4
       version: 1.7.4
+    '@orpc/openapi':
+      specifier: 1.7.4
+      version: 1.7.4
     '@orpc/server':
       specifier: 1.7.4
       version: 1.7.4
     '@orpc/tanstack-query':
+      specifier: 1.7.4
+      version: 1.7.4
+    '@orpc/zod':
       specifier: 1.7.4
       version: 1.7.4
     '@tanstack/react-form':
@@ -73,6 +79,9 @@ importers:
       '@turbo/gen':
         specifier: ^2.5.5
         version: 2.5.5(@types/node@24.1.0)(typescript@5.8.3)
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.13.0(typescript@5.8.3)
       turbo:
         specifier: ^2.5.4
         version: 2.5.5
@@ -227,10 +236,7 @@ importers:
         version: link:../../tooling/typescript-config
       '@woym/workers-types':
         specifier: workspace:*
-        version: link:../../packages/worker-types
-      tsdown:
-        specifier: ^0.12.9
-        version: 0.12.9(typescript@5.8.3)
+        version: link:../../packages/workers-types
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -379,12 +385,18 @@ importers:
       '@orpc/client':
         specifier: 'catalog:'
         version: 1.7.4
+      '@orpc/openapi':
+        specifier: 'catalog:'
+        version: 1.7.4(crossws@0.3.5)(ws@8.18.3)
       '@orpc/server':
         specifier: 'catalog:'
         version: 1.7.4(crossws@0.3.5)(ws@8.18.3)
       '@orpc/tanstack-query':
         specifier: 'catalog:'
         version: 1.7.4(@orpc/client@1.7.4)(@tanstack/query-core@5.83.0)
+      '@orpc/zod':
+        specifier: 'catalog:'
+        version: 1.7.4(@orpc/contract@1.7.4)(@orpc/server@1.7.4(crossws@0.3.5)(ws@8.18.3))(crossws@0.3.5)(ws@8.18.3)(zod@3.25.76)
       '@woym/auth':
         specifier: workspace:*
         version: link:../auth
@@ -393,7 +405,7 @@ importers:
         version: link:../db
       '@woym/workers-types':
         specifier: workspace:*
-        version: link:../worker-types
+        version: link:../workers-types
       ai:
         specifier: ^4.3.16
         version: 4.3.19(react@19.0.0)(zod@3.25.76)
@@ -410,9 +422,6 @@ importers:
       '@woym/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.13.0(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -428,9 +437,6 @@ importers:
       '@woym/db':
         specifier: workspace:*
         version: link:../db
-      '@woym/schemas':
-        specifier: workspace:*
-        version: link:../schemas
       better-auth:
         specifier: ^1.3.3
         version: 1.3.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -444,9 +450,6 @@ importers:
       '@woym/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.13.0(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -461,7 +464,7 @@ importers:
         version: link:../schemas
       '@woym/workers-types':
         specifier: workspace:*
-        version: link:../worker-types
+        version: link:../workers-types
       drizzle-orm:
         specifier: ^0.44.3
         version: 0.44.3(@cloudflare/workers-types@4.20250723.0)(@libsql/client@0.15.10)(@opentelemetry/api@1.9.0)(kysely@0.28.3)
@@ -481,9 +484,6 @@ importers:
       drizzle-kit:
         specifier: ^0.31.4
         version: 0.31.4
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.13.0(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -500,9 +500,6 @@ importers:
       '@woym/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.13.0(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -514,7 +511,7 @@ importers:
         version: 0.13.8(typescript@5.8.3)(zod@3.25.76)
       '@woym/workers-types':
         specifier: workspace:*
-        version: link:../worker-types
+        version: link:../workers-types
       zod:
         specifier: 'catalog:'
         version: 3.25.76
@@ -528,14 +525,11 @@ importers:
       cloudflare:
         specifier: ^4.5.0
         version: 4.5.0
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.13.0(typescript@5.8.3)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
 
-  packages/worker-types:
+  packages/workers-types:
     dependencies:
       wrangler:
         specifier: ^4.25.1
@@ -2336,6 +2330,15 @@ packages:
   '@orpc/contract@1.7.4':
     resolution: {integrity: sha512-lQAYxo1WZYfEc/WsB0aluc1v0tuAVPmZponhQPK0DdB3MNR9x0wys4Wldf5xtnZ47ilFVt2p1w59qAjR/DwA8g==}
 
+  '@orpc/json-schema@1.7.4':
+    resolution: {integrity: sha512-8U4sKuoUB+2ETEpZ85flESa7oV8uaID0Ony0b9dd8iT5cyXxeOPqiL6eD5XK2WiiLwULEHv0NJG4SqeujBNBYA==}
+
+  '@orpc/openapi-client@1.7.4':
+    resolution: {integrity: sha512-G587hb4L3fSMvQY3R5151YZ0PqM23JSfEhUmZsq9QpLiARrDmnUfSKsrGQbv2WZRulX8l1A3fLbZp/lAJ5iLkg==}
+
+  '@orpc/openapi@1.7.4':
+    resolution: {integrity: sha512-m1ipxYv7sx0LlaWyL6tO5tZM+0GSW3215kLdVVUHFYkjOBICm1M2juxsM+G7Ce89/os+cCzqqXTrldxitVSFJQ==}
+
   '@orpc/server@1.7.4':
     resolution: {integrity: sha512-J1+09abwzLjSVP46/2hDGW/835WLFacX1rfGuBpJPD2cCxVUEQOrzhoIuxezFYhW5u2Y4PPrqanLjayuo673sw==}
     peerDependencies:
@@ -2370,6 +2373,13 @@ packages:
     peerDependencies:
       '@orpc/client': 1.7.4
       '@tanstack/query-core': '>=5.80.2'
+
+  '@orpc/zod@1.7.4':
+    resolution: {integrity: sha512-mwr4jBx/8g/ApJOEfFJiPh5txa+wwNex8y7JW6H0VFL5ghUqOlPOjQdiyuWnu04DaRlVQRJTQPaKOn9K0wmUfA==}
+    peerDependencies:
+      '@orpc/contract': 1.7.4
+      '@orpc/server': 1.7.4
+      zod: '>=3.25.0'
 
   '@oxc-project/runtime@0.77.3':
     resolution: {integrity: sha512-vsC/ewcGJ7xXnnwZkku7rpPH5Lxb5g4J+V6lD9eBTnRLmXVXM7Qu50y+ozD+UD5IXaSoVOvVMGTT4YSNCz2MQQ==}
@@ -6182,6 +6192,9 @@ packages:
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
+  json-schema-typed@8.0.1:
+    resolution: {integrity: sha512-XQmWYj2Sm4kn4WeTYvmpKEbyPsL7nBsb647c7pMe6l02/yx2+Jfc4dT6UZkEXnIUb5LhD55r2HPsJ1milQ4rDg==}
+
   json-schema@0.4.0:
     resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
 
@@ -7582,22 +7595,6 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rolldown-plugin-dts@0.13.14:
-    resolution: {integrity: sha512-wjNhHZz9dlN6PTIXyizB6u/mAg1wEFMW9yw7imEVe3CxHSRnNHVyycIX0yDEOVJfDNISLPbkCIPEpFpizy5+PQ==}
-    engines: {node: '>=20.18.0'}
-    peerDependencies:
-      '@typescript/native-preview': '>=7.0.0-dev.20250601.1'
-      rolldown: ^1.0.0-beta.9
-      typescript: ^5.0.0
-      vue-tsc: ^2.2.0 || ^3.0.0
-    peerDependenciesMeta:
-      '@typescript/native-preview':
-        optional: true
-      typescript:
-        optional: true
-      vue-tsc:
-        optional: true
-
   rolldown-plugin-dts@0.14.1:
     resolution: {integrity: sha512-M++jFiiI0dwd9jNnta5vfxc058wwoibgeBzNMZw0QRm8jPJYxy4P3nQYlBtwQagKUDQVR0LXHSrRgXTezELEhw==}
     engines: {node: '>=20.18.0'}
@@ -7638,6 +7635,9 @@ packages:
 
   rou3@0.5.1:
     resolution: {integrity: sha512-OXMmJ3zRk2xeXFGfA3K+EOPHC5u7RDFG7lIOx0X1pdnhUkI8MdVrbV+sNsD80ElpUZ+MRHdyxPnFthq9VHs8uQ==}
+
+  rou3@0.7.3:
+    resolution: {integrity: sha512-KKenF/hB2iIhS1ohj226LT+/8uKCBpSMqeS4V1UPN9vad99uLoyIhrULRRB1skaB40LQHcBlSsAi3sT8MaoDDQ==}
 
   rrweb-cssom@0.8.0:
     resolution: {integrity: sha512-guoltQEx+9aMf2gDZ0s62EcV8lsXR+0w8915TC3ITdn2YueuNjdAYh/levpU9nFaoChh9RUS5ZdQMrKfVEN9tw==}
@@ -8204,28 +8204,6 @@ packages:
       typescript:
         optional: true
 
-  tsdown@0.12.9:
-    resolution: {integrity: sha512-MfrXm9PIlT3saovtWKf/gCJJ/NQCdE0SiREkdNC+9Qy6UHhdeDPxnkFaBD7xttVUmgp0yUHtGirpoLB+OVLuLA==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    peerDependencies:
-      '@arethetypeswrong/core': ^0.18.1
-      publint: ^0.3.0
-      typescript: ^5.0.0
-      unplugin-lightningcss: ^0.4.0
-      unplugin-unused: ^0.5.0
-    peerDependenciesMeta:
-      '@arethetypeswrong/core':
-        optional: true
-      publint:
-        optional: true
-      typescript:
-        optional: true
-      unplugin-lightningcss:
-        optional: true
-      unplugin-unused:
-        optional: true
-
   tsdown@0.13.0:
     resolution: {integrity: sha512-+1ZqbLIYDAiNxtAvq9RsTg55PRvaMxGmtvRFBW2J+i4GfDKiyHAkxez1eB3EPvHG1Z917nsf2madsSeblJS3GA==}
     engines: {node: '>=20.19.0'}
@@ -8688,6 +8666,9 @@ packages:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
     hasBin: true
+
+  wildcard-match@5.1.4:
+    resolution: {integrity: sha512-wldeCaczs8XXq7hj+5d/F38JE2r7EXgb6WQDM84RVwxy81T/sxB5e9+uZLK9Q9oNz1mlvjut+QtvgaOQFPVq/g==}
 
   winston-transport@4.9.0:
     resolution: {integrity: sha512-8drMJ4rkgaPo1Me4zD/3WLfI/zPdA9o2IipKODunnGDcuqbHwjsbB79ylv04LCGGzU0xQ6vTznOMpQGaLhhm6A==}
@@ -10702,6 +10683,38 @@ snapshots:
       '@standard-schema/spec': 1.0.0
       openapi-types: 12.1.3
 
+  '@orpc/json-schema@1.7.4(crossws@0.3.5)(ws@8.18.3)':
+    dependencies:
+      '@orpc/contract': 1.7.4
+      '@orpc/openapi': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/server': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/shared': 1.7.4
+      json-schema-typed: 8.0.1
+    transitivePeerDependencies:
+      - crossws
+      - ws
+
+  '@orpc/openapi-client@1.7.4':
+    dependencies:
+      '@orpc/client': 1.7.4
+      '@orpc/contract': 1.7.4
+      '@orpc/shared': 1.7.4
+      '@orpc/standard-server': 1.7.4
+
+  '@orpc/openapi@1.7.4(crossws@0.3.5)(ws@8.18.3)':
+    dependencies:
+      '@orpc/client': 1.7.4
+      '@orpc/contract': 1.7.4
+      '@orpc/openapi-client': 1.7.4
+      '@orpc/server': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/shared': 1.7.4
+      '@orpc/standard-server': 1.7.4
+      json-schema-typed: 8.0.1
+      rou3: 0.7.3
+    transitivePeerDependencies:
+      - crossws
+      - ws
+
   '@orpc/server@1.7.4(crossws@0.3.5)(ws@8.18.3)':
     dependencies:
       '@orpc/client': 1.7.4
@@ -10753,6 +10766,20 @@ snapshots:
       '@orpc/client': 1.7.4
       '@orpc/shared': 1.7.4
       '@tanstack/query-core': 5.83.0
+
+  '@orpc/zod@1.7.4(@orpc/contract@1.7.4)(@orpc/server@1.7.4(crossws@0.3.5)(ws@8.18.3))(crossws@0.3.5)(ws@8.18.3)(zod@3.25.76)':
+    dependencies:
+      '@orpc/contract': 1.7.4
+      '@orpc/json-schema': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/openapi': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/server': 1.7.4(crossws@0.3.5)(ws@8.18.3)
+      '@orpc/shared': 1.7.4
+      escape-string-regexp: 5.0.0
+      wildcard-match: 5.1.4
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - crossws
+      - ws
 
   '@oxc-project/runtime@0.77.3': {}
 
@@ -15051,6 +15078,8 @@ snapshots:
 
   json-schema-traverse@1.0.0: {}
 
+  json-schema-typed@8.0.1: {}
+
   json-schema@0.4.0: {}
 
   json5@2.2.3: {}
@@ -16746,23 +16775,6 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
-  rolldown-plugin-dts@0.13.14(rolldown@1.0.0-beta.29)(typescript@5.8.3):
-    dependencies:
-      '@babel/generator': 7.28.0
-      '@babel/parser': 7.28.0
-      '@babel/types': 7.28.1
-      ast-kit: 2.1.1
-      birpc: 2.5.0
-      debug: 4.4.1
-      dts-resolver: 2.1.1
-      get-tsconfig: 4.10.1
-      rolldown: 1.0.0-beta.29
-    optionalDependencies:
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - oxc-resolver
-      - supports-color
-
   rolldown-plugin-dts@0.14.1(rolldown@1.0.0-beta.29)(typescript@5.8.3):
     dependencies:
       '@babel/generator': 7.28.0
@@ -16839,6 +16851,8 @@ snapshots:
       fsevents: 2.3.3
 
   rou3@0.5.1: {}
+
+  rou3@0.7.3: {}
 
   rrweb-cssom@0.8.0: {}
 
@@ -17497,29 +17511,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  tsdown@0.12.9(typescript@5.8.3):
-    dependencies:
-      ansis: 4.1.0
-      cac: 6.7.14
-      chokidar: 4.0.3
-      debug: 4.4.1
-      diff: 8.0.2
-      empathic: 2.0.0
-      hookable: 5.5.3
-      rolldown: 1.0.0-beta.29
-      rolldown-plugin-dts: 0.13.14(rolldown@1.0.0-beta.29)(typescript@5.8.3)
-      semver: 7.7.2
-      tinyexec: 1.0.1
-      tinyglobby: 0.2.14
-      unconfig: 7.3.2
-    optionalDependencies:
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - '@typescript/native-preview'
-      - oxc-resolver
-      - supports-color
-      - vue-tsc
-
   tsdown@0.13.0(typescript@5.8.3):
     dependencies:
       ansis: 4.1.0
@@ -17898,6 +17889,8 @@ snapshots:
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
+
+  wildcard-match@5.1.4: {}
 
   winston-transport@4.9.0:
     dependencies:

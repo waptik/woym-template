@@ -1,8 +1,17 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@woym/tsconfig/base.json",
+	"extends": "@woym/tsconfig/internal-package.json",
 	"compilerOptions": {
-		"rootDir": "src"
+		"composite": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": true,
+		"noEmit": false,
+		"baseUrl": ".",
+		"paths": {
+			"#/*": ["./src/*"]
+		}
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]

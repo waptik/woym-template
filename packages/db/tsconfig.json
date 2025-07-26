@@ -1,9 +1,18 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@woym/tsconfig/base.json",
+	"extends": "@woym/tsconfig/internal-package.json",
 	"compilerOptions": {
-		"rootDir": "src",
-		"types": ["./worker-configuration.d.ts", "node"]
+		"composite": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": true,
+		"noEmit": false,
+		"types": ["./worker-configuration.d.ts", "node"],
+		"baseUrl": ".",
+		"paths": {
+			"#/*": ["./src/*"]
+		}
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]

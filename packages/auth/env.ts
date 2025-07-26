@@ -10,7 +10,7 @@ export const authEnv = () =>
 			...process.env,
 			// POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
 			// POLAR_ENVIRONMENT: process.env.POLAR_ENVIRONMENT,
-			// VITE_SERVER_URL: import.meta.env.VITE_SERVER_URL,
+			// VITE_API_URL: import.meta.env.VITE_API_URL,
 			// VITE_GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID,
 			// VITE_SOURCE_COMMIT:
 			// 	process.env.SOURCE_COMMIT ||

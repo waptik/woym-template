@@ -2,7 +2,6 @@ import { defineConfig } from "drizzle-kit"
 
 import { env } from "./env"
 
-console.log("[DB] Drizzle configuration initialized with environment variables:", { env })
 
 export default defineConfig({
 	schema: "./src/schema",

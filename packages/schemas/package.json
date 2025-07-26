@@ -4,27 +4,25 @@
 	"version": "0.1.0",
 	"type": "module",
 	"exports": {
-		".": "./dist/index.js",
-		"./base": "./dist/base.js",
-		"./cf": "./dist/cf.js",
-		"./client": "./dist/client.js",
-		"./db": "./dist/db.js",
-		"./expo": "./dist/expo.js",
-		"./server": "./dist/server.js",
+		".": "./dist/index.mjs",
+		"./base": "./dist/base.mjs",
+		"./cf": "./dist/cf.mjs",
+		"./client": "./dist/client.mjs",
+		"./db": "./dist/db.mjs",
+		"./expo": "./dist/expo.mjs",
+		"./server": "./dist/server.mjs",
 		"./package.json": "./package.json"
 	},
 	"license": "MIT",
 	"scripts": {
-		"build": "tsdown",
+		"dev": "tsdown",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
-		"dev": "tsdown --watch",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",
 		"@woym/tsconfig": "workspace:*",
 		"cloudflare": "^4.5.0",
-		"tsdown": "catalog:",
 		"typescript": "catalog:"
 	},
 	"dependencies": {
@@ -32,7 +30,7 @@
 		"@woym/workers-types": "workspace:*",
 		"zod": "catalog:"
 	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts"
 }

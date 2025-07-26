@@ -3,16 +3,29 @@
 	"extends": "./base.json",
 	"display": "Vite React",
 	"compilerOptions": {
+		"types": [
+			"vite/client"
+		],
+		"jsx": "react-jsx",
 		"target": "ESNext",
-		"useDefineForClassFields": true,
 		"module": "ESNext",
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"lib": [
+			"ESNext",
+			"DOM",
+			"DOM.Iterable"
+		],
 		"sourceMap": true,
 		"resolveJsonModule": true,
 		"noEmit": true,
+		"useDefineForClassFields": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
+		"strict": true,
 		"noImplicitReturns": true
 	},
-	"exclude": ["node_modules"]
+	"exclude": [
+		"node_modules",
+		"dist",
+		".tanstack"
+	]
 }

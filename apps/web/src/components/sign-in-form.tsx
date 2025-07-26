@@ -1,7 +1,7 @@
 import { useForm } from "@tanstack/react-form"
 import { useNavigate } from "@tanstack/react-router"
 import { toast } from "sonner"
-import z from "zod"
+import z from "zod/v4"
 import { authClient } from "@/lib/auth-client"
 import Loader from "./loader"
 import { Button } from "./ui/button"
@@ -26,8 +26,8 @@ export default function SignInForm({ onSwitchToSignUp }: { onSwitchToSignUp: () 
 					password: value.password,
 				},
 				{
-					onSuccess: () => {
-						navigate({
+					onSuccess: async() => {
+					await	navigate({
 							to: "/dashboard",
 						})
 						toast.success("Sign in successful")

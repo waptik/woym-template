@@ -3,35 +3,61 @@
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
-		"useIgnoreFile": false
+		"useIgnoreFile": false,
+		"defaultBranch": "main"
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": [
-			"**",
-			"!**/.next",
-			"!**/dist",
-			"!**/.turbo",
-			"!**/dev-dist",
-			"!**/.zed",
-			"!**/.contentlayer/**",
-			"!**/.vscode",
-			"!**/routeTree.gen.ts",
-			"!**/package.json.hbs",
-			"!**/src-tauri",
-			"!**/.nuxt",
-			"!bts.jsonc",
-			"!**/.expo",
-			"!**/.wrangler",
-			"!packages/ui/src/styles.css" // Biome can't parse the oddities of Tailwind syntax
-		]
+		"experimentalScannerIgnores": [
+			"apps/**/node_modules/**",
+			"packages/**/node_modules/**",
+			"tooling/**/node_modules/**",
+			"**/node_modules/**",
+			"**/vendor/**",
+			"**/workers-types/**",
+			"**/public/**",
+			"**/dist/**",
+			"**/dev-dist/**",
+			"**/src-tauri/**",
+			"**/templates/**",
+			"**/patches/**",
+			"**/icons/**",
+			"**/.cache/**",
+			"**/.turbo/**",
+			"**/.zed/**",
+			"**/.contentlayer/**",
+			"**/.vscode/**",
+			"**/.wrangler/**",
+			"**/.nuxt/**",
+			"**/.next/**",
+			"**/.expo/**",
+			"**/.nitro/**",
+			"**/.output/**",
+			"**/.tanstack/**",
+			"**/routeTree.gen.ts",
+			"**/package.json",
+			"**/worker-configuration.d.ts",
+			"**/*.vars",
+			"**/*.env.*",
+			"**/*.yaml",
+			"**/*.json",
+			"bts.jsonc"
+		],
+		"includes": ["**/src/**/*.{ts,tsx}"]
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"lineWidth": 120
+		"lineWidth": 120,
+		"indentWidth": 6
 	},
-	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -62,7 +88,8 @@
 					"options": {
 						"functions": ["clsx", "cva", "cn"]
 					}
-				}
+				},
+				"noImportantStyles": "error"
 			},
 			"style": {
 				"noNonNullAssertion": "warn",
