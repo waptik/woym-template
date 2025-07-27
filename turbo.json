@@ -5,6 +5,7 @@
 		"build": {
 			"outputLogs": "full",
 			"dependsOn": [
+				"//#tsdown",
 				"^build"
 			],
 			"inputs": [
@@ -34,6 +35,19 @@
 				"dist/**"
 			]
 		},
+		"//#tsdown": {
+			"cache": true,
+			"persistent": false,
+			"outputs": [
+				"dist/**",
+				"worker-configuration.d.ts",
+				".wrangler/**",
+				".tanstack/**",
+				".output/**",
+				".nitro/**",
+				".turbo/**"
+			]
+		},
 		"//#knip": {},
 		"//#lint": {},
 		"//#lint:fix": {
@@ -50,10 +64,16 @@
 		},
 		"dev": {
 			"dependsOn": [
+				"//#tsdown",
 				"^dev"
 			],
 			"cache": false,
 			"outputLogs": "full",
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env*",
+				".dev.vars*"
+			],
 			"outputs": [
 				"dist/**",
 				"ios/**",
@@ -69,7 +89,7 @@
 			"dependsOn": [
 				"^deploy"
 			],
-			"cache": false,
+			"cache": true,
 			"persistent": false,
 			"outputs": [
 				"dist/**",
@@ -81,7 +101,8 @@
 				".tanstack/**",
 				".output/**",
 				".nitro/**",
-				".turbo/**"
+				".turbo/**",
+				".wrangler/**"
 			]
 		},
 		"@woym/schemas#dev": {
@@ -97,9 +118,6 @@
 			"persistent": false
 		},
 		"@woym/auth#dev": {
-			"dependsOn": [
-				"@woym/db#dev"
-			],
 			"cache": false,
 			"persistent": false
 		},

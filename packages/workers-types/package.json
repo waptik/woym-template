@@ -15,7 +15,6 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
 		"prebuild": "pnpm run cf-typegen",
 		"predev": "pnpm run cf-typegen",
-		"dev": "tsdown --watch",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"clean:simple": "rm -rf dist",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"

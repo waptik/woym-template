@@ -12,8 +12,8 @@
 	},
 	"license": "MIT",
 	"scripts": {
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
-		"dev": "tsdown",
 		"db:migrate": "wrangler d1 migrations apply woymx-db --remote",
 		"db:migrate:local": "wrangler d1 migrations apply woymx-db --local",
 		"db:push": "drizzle-kit push",

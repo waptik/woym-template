@@ -1,3 +1,3 @@
 // Export router types and utilities
 
-export type { RouterClient } from "@orpc/server"
+export type { RouterClient } from "@orpc/server";
