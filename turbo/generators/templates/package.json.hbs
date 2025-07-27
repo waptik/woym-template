@@ -2,17 +2,18 @@
 "name": "@woym/{{ name }}",
 "private": true,
 "version": "0.1.0",
+"license": "MIT",
 "type": "module",
+"main": "",
+"module": "",
+"types": "",
 "exports": {
 ".": "./src/index.ts",
 "./package.json": "./package.json"
 },
-"main": "./dist/index.js",
-"module": "./dist/index.js",
-"types": "./dist/index.d.ts",
-"license": "MIT",
 "scripts": {
 "clean": "git clean -xdf .cache .turbo dist node_modules",
+"clean:simple": "rm -rf dist .turbo",
 "dev": "tsdown --watch",
 "typecheck": "tsc --noEmit --emitDeclarationOnly false"
 },
