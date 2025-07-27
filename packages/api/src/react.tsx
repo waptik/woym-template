@@ -31,23 +31,19 @@ function getRpcLink(opts: RpcLinkOptions) {
 					headers.set("Cookie", cookies);
 				}
 			}
-			console.log(
-				"[api.getRpcLink] Headers:",
-				Object.fromEntries(headers),
-			);
 
 			return Object.fromEntries(headers);
 		},
 		...(opts.isWeb
 			? {
-				fetch(url, options) {
-					// Ensure credentials are included for CORS requests
-					return fetch(url, {
-						...options,
-						credentials: "include",
-					});
-				},
-			}
+					fetch(url, options) {
+						// Ensure credentials are included for CORS requests
+						return fetch(url, {
+							...options,
+							credentials: "include",
+						});
+					},
+				}
 			: undefined),
 		plugins: [
 			new DedupeRequestsPlugin({
@@ -58,12 +54,10 @@ function getRpcLink(opts: RpcLinkOptions) {
 	});
 }
 
-const getORPCClient = (
-	link: Parameters<typeof createORPCClient>[0],
-): RouterClient<typeof appRouter> => createORPCClient(link);
+const getORPCClient = (link: Parameters<typeof createORPCClient>[0]): RouterClient<typeof appRouter> =>
+	createORPCClient(link);
 
-const getORPC = (client: RouterClient<typeof appRouter>) =>
-	createTanstackQueryUtils(client);
+const getORPC = (client: RouterClient<typeof appRouter>) => createTanstackQueryUtils(client);
 
 export function createORPC(options: RpcLinkOptions): {
 	client: RouterClient<typeof appRouter>;

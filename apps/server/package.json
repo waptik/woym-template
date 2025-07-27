@@ -3,28 +3,28 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "wrangler deploy --dry-run",
     "clean": "git clean -xdf .cache .turbo .wrangler dist node_modules",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "typecheck": "tsc --noEmit",
-    "dev": "vite --host 0.0.0.0 --port=3001",
+    "dev": "wrangler dev --port=3001",
+    "preview": "vite preview --port=3002",
     "start": "wrangler dev --port=3001",
-    "deploy": " wrangler deploy"
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.2.3",
     "@woym/api": "workspace:*",
     "@woym/auth": "workspace:*",
-    "@woym/db": "workspace:*",
     "ai": "^4.3.16",
     "dotenv": "^16.4.7",
     "hono": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.9.6",
+    "@cloudflare/vite-plugin": "^1.10.1",
     "@woym/tailwind-config": "workspace:*",
     "@woym/tsconfig": "workspace:*",
-    "@woym/schemas": "workspace:*",
     "@woym/workers-types": "workspace:*",
     "typescript": "catalog:",
     "vite": "catalog:",

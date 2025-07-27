@@ -1,19 +1,28 @@
 {
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@woym/tsconfig/vite.json",
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "bundler",
-		"verbatimModuleSyntax": true,
 		"strict": true,
-		"skipLibCheck": true,
-		"baseUrl": "./",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": [
+				"./src/*"
+			]
 		},
-		"outDir": "./dist",
-		"types": ["./worker-configuration.d.ts", "node"],
-		"composite": true,
+		"types": [
+			"./worker-configuration.d.ts",
+			"vite/client",
+			"node"
+		],
 		"jsx": "react-jsx",
 		"jsxImportSource": "hono/jsx"
-	}
+	},
+	"include": [
+		"**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"**/*.test.ts",
+		"**/*.spec.ts"
+	],
 }

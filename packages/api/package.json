@@ -2,7 +2,11 @@
 	"name": "@woym/api",
 	"private": true,
 	"version": "0.1.0",
+	"license": "MIT",
 	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": "./dist/index.js",
 		"./client": "./dist/client.js",
@@ -12,7 +16,6 @@
 		"./server": "./dist/server.js",
 		"./package.json": "./package.json"
 	},
-	"license": "MIT",
 	"scripts": {
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"dev": "tsdown --watch",
@@ -36,8 +39,5 @@
 		"@tanstack/react-query": "catalog:",
 		"@woym/tsconfig": "workspace:*",
 		"typescript": "catalog:"
-	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	}
 }

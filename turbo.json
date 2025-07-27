@@ -97,6 +97,9 @@
 			"persistent": false
 		},
 		"@woym/auth#dev": {
+			"dependsOn": [
+				"@woym/db#dev"
+			],
 			"cache": false,
 			"persistent": false
 		},

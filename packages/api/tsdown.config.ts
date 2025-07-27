@@ -11,7 +11,7 @@ export default defineConfig({
 		lib: "./src/lib/index.ts",
 	},
 	// format: ["cjs", "esm"],
-	dts: true,
+	// dts: true,
 	exports: true,
 	// minify: true,
 	// unbundle: true,

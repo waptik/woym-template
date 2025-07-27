@@ -6,7 +6,6 @@
 	"tasks": {
 		"build": {
 			"dependsOn": [
-				"@woym/db#build",
 				"@woym/auth#build",
 				"@woym/api#build"
 			],
@@ -25,9 +24,8 @@
 				"dist/**"
 			],
 			"dependsOn": [
-				"@woym/api#dev",
 				"@woym/auth#dev",
-				"@woym/db#dev"
+				"@woym/api#dev"
 			],
 			"cache": false,
 			"persistent": true,
