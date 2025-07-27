@@ -7,10 +7,9 @@
 			"vite/client"
 		],
 		"jsx": "react-jsx",
-		"target": "ESNext",
-		"module": "ESNext",
+		"target": "ES2022",
 		"lib": [
-			"ESNext",
+			"ES2022",
 			"DOM",
 			"DOM.Iterable"
 		],
@@ -21,6 +20,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"strict": true,
+		"allowImportingTsExtensions": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedSideEffectImports": true,
 		"noImplicitReturns": true
 	},
 	"exclude": [
