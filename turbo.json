@@ -89,7 +89,7 @@
 			"dependsOn": [
 				"^deploy"
 			],
-			"cache": true,
+			"cache": false,
 			"persistent": false,
 			"outputs": [
 				"dist/**",
