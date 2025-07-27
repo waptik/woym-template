@@ -5,9 +5,7 @@
 	"type": "module",
 	"exports": {
 		".": "./dist/index.js",
-		"./db": "./dist/db.js",
 		"./db-cli": "./dist/db-cli.js",
-		"./env": "./dist/env.js",
 		"./schema": "./dist/schema.js",
 		"./utils": "./dist/utils.js",
 		"./package.json": "./package.json"
@@ -26,7 +24,6 @@
 	"dependencies": {
 		"@t3-oss/env-core": "^0.13.8",
 		"@woym/schemas": "workspace:*",
-		"@woym/workers-types": "workspace:*",
 		"drizzle-orm": "^0.44.3",
 		"drizzle-zod": "^0.8.2",
 		"zod": "^4.0.5"

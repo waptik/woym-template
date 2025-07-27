@@ -6,7 +6,7 @@ export default defineConfig({
 		schema: "./src/schema/index.ts",
 		"db-cli": "./src/db-cli.ts",
 		utils: "./src/utils.ts",
-		env: "./env.ts",
 	},
 	exports: true,
+	external:["@woym/workers-types"]
 })

@@ -8,7 +8,7 @@ export const env = createEnv({
 		EXPO_PUBLIC_SERVER_URL: process.env.EXPO_PUBLIC_SERVER_URL,
 	},
 
-	clientPrefix: "EXPO_PUBLIC",
+	clientPrefix: "EXPO_PUBLIC_",
 	client: {
 		// Client-side environment variables
 		EXPO_PUBLIC_SERVER_URL: z.url(),
