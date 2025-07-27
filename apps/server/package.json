@@ -3,9 +3,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "pnpm run build:wrangler",
-    "build:vite": "vite build",
-    "build:wrangler": "wrangler deploy --dry-run",
+    "build": "wrangler deploy --dry-run",
     "clean": "git clean -xdf .cache .turbo .wrangler dist node_modules",
     "typecheck": "tsc --noEmit",
     "dev": "wrangler dev --ip=0.0.0.0 --port=3001",
@@ -25,12 +23,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.10.1",
     "@woym/tailwind-config": "workspace:*",
     "@woym/tsconfig": "workspace:*",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "catalog:"
   }
 }
