@@ -1,135 +1,140 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-	"vcs": {
-		"enabled": false,
-		"clientKind": "git",
-		"useIgnoreFile": false,
-		"defaultBranch": "main"
-	},
-	"files": {
-		"ignoreUnknown": false,
-		"experimentalScannerIgnores": [
-			"bts.jsonc",
-			"pnpm-lock.yaml",
-			"pnpm-workspace.yaml",
-			"filtered.json",
-			"tracing.json"
-		],
-		"includes": [
-			"**/src/**/*.{ts,tsx}",
-			"**/env.ts",
-			// to ignore all files/directories below:
-			"!**/node_modules/**",
-			"!**/vendor/**",
-			"!**/workers-types/**",
-			"!**/public/**",
-			"!**/dist/**",
-			"!**/dev-dist/**",
-			"!**/src-tauri/**",
-			"!**/templates/**",
-			"!**/patches/**",
-			"!**/icons/**",
-			"!**/.cache/**",
-			"!**/.turbo/**",
-			"!**/.zed/**",
-			"!**/.contentlayer/**",
-			"!**/.vscode/**",
-			"!**/.wrangler/**",
-			"!**/.expo/**",
-			"!**/.nitro/**",
-			"!**/.output/**",
-			"!**/.tanstack/**",
-			"!**/routeTree.gen.ts",
-			"!**/worker-configuration.d.ts",
-			"!**/*.vars",
-			"!**/*.env",
-			"!**/*.yaml",
-			"!**/*.json",
-			"!**/*.env.*",
-			"!**/*.tsdown.*"
-		]
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab",
-		"lineWidth": 120,
-		"indentWidth": 6
-	},
-	"assist": {
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"complexity": {
-				"noBannedTypes": "off",
-				"noUselessTernary": "off"
-			},
-			"a11y": {
-				"useKeyWithClickEvents": "off"
-			},
-			"correctness": {
-				"noUnusedVariables": "error",
-				"noUnusedImports": "error",
-				"noUnusedPrivateClassMembers": "error",
-				"useExhaustiveDependencies": "info",
-				"noUnusedLabels": {
-					"level": "warn",
-					"options": {}
-				},
-				"useYield": "off"
-			},
-			"nursery": {
-				"noFloatingPromises": "error",
-				"useSortedClasses": {
-					"level": "warn",
-					"fix": "safe",
-					"options": {
-						"functions": ["clsx", "cva", "cn"]
-					}
-				},
-				"noImportantStyles": "error"
-			},
-			"style": {
-				"noNonNullAssertion": "warn",
-				"useImportType": "error",
-				"noParameterAssign": "error",
-				"useAsConstAssertion": "error",
-				"useDefaultParameterLast": "error",
-				"useEnumInitializers": "error",
-				"useSelfClosingElements": "error",
-				"useSingleVarDeclarator": "error",
-				"noUnusedTemplateLiteral": "error",
-				"useNumberNamespace": "error",
-				"noInferrableTypes": "error",
-				"noUselessElse": "error"
-			},
-			"suspicious": {
-				"noExplicitAny": "warn",
-				"noArrayIndexKey": "warn",
-				"noShadowRestrictedNames": "warn"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double",
-			"semicolons": "always"
-		}
-	},
-	"json": {
-		"parser": {
-			"allowComments": true,
-			"allowTrailingCommas": true
-		},
-		"formatter": {
-			"indentStyle": "space",
-			"trailingCommas": "none"
-		}
-	}
+      "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+      "vcs": {
+            "enabled": false,
+            "clientKind": "git",
+            "useIgnoreFile": false,
+            "defaultBranch": "main"
+      },
+      "files": {
+            "ignoreUnknown": false,
+            "experimentalScannerIgnores": [
+                  "bts.jsonc",
+                  "pnpm-lock.yaml",
+                  "pnpm-workspace.yaml",
+                  "filtered.json",
+                  "tracing.json"
+            ],
+            "includes": [
+                  "**/src/**/*.{ts,tsx}",
+                  "**/tsconfig.json",
+                  "**/tsconfig.*.json",
+                  "**/tsdown.*",
+                  "**/env.ts",
+                  "**/.env*",
+                  "**/drizzle.config.ts",
+                  "**/package.json",
+                  "**/wrangler.jsonc",
+                  "**/vite.config.ts",
+                  "**/worker-configuration.d.ts",
+                  "**/dev.vars*",
+                  // to ignore all files/directories below:
+                  "!**/node_modules/**",
+                  "!**/vendor/**",
+                  "!**/workers-types/**",
+                  "!**/public/**",
+                  "!**/dist/**",
+                  "!**/dev-dist/**",
+                  "!**/src-tauri/**",
+                  "!**/templates/**",
+                  "!**/patches/**",
+                  "!**/icons/**",
+                  "!**/.cache/**",
+                  "!**/.turbo/**",
+                  "!**/.zed/**",
+                  "!**/.contentlayer/**",
+                  "!**/.vscode/**",
+                  "!**/.wrangler/**",
+                  "!**/.expo/**",
+                  "!**/.nitro/**",
+                  "!**/.output/**",
+                  "!**/.tanstack/**",
+                  "!**/routeTree.gen.ts",
+                  "!**/*.yaml",
+                  "!**/*.json"
+            ]
+      },
+      "formatter": {
+            "enabled": true,
+            "indentStyle": "tab",
+            "lineWidth": 120,
+            "indentWidth": 6
+      },
+      "assist": {
+            "actions": {
+                  "source": {
+                        "organizeImports": "on"
+                  }
+            }
+      },
+      "linter": {
+            "enabled": true,
+            "rules": {
+                  "recommended": true,
+                  "complexity": {
+                        "noBannedTypes": "off",
+                        "noUselessTernary": "off"
+                  },
+                  "a11y": {
+                        "useKeyWithClickEvents": "off"
+                  },
+                  "correctness": {
+                        "noUnusedVariables": "error",
+                        "noUnusedImports": "error",
+                        "noUnusedPrivateClassMembers": "error",
+                        "useExhaustiveDependencies": "info",
+                        "noUnusedLabels": {
+                              "level": "warn",
+                              "options": {}
+                        },
+                        "useYield": "off"
+                  },
+                  "nursery": {
+                        "noFloatingPromises": "error",
+                        "useSortedClasses": {
+                              "level": "warn",
+                              "fix": "safe",
+                              "options": {
+                                    "functions": ["clsx", "cva", "cn"]
+                              }
+                        },
+                        "noImportantStyles": "error"
+                  },
+                  "style": {
+                        "noNonNullAssertion": "warn",
+                        "useImportType": "error",
+                        "noParameterAssign": "error",
+                        "useAsConstAssertion": "error",
+                        "useDefaultParameterLast": "error",
+                        "useEnumInitializers": "error",
+                        "useSelfClosingElements": "error",
+                        "useSingleVarDeclarator": "error",
+                        "noUnusedTemplateLiteral": "error",
+                        "useNumberNamespace": "error",
+                        "noInferrableTypes": "error",
+                        "noUselessElse": "error"
+                  },
+                  "suspicious": {
+                        "noExplicitAny": "warn",
+                        "noArrayIndexKey": "warn",
+                        "noShadowRestrictedNames": "warn"
+                  }
+            }
+      },
+      "javascript": {
+            "formatter": {
+                  "quoteStyle": "double",
+                  "semicolons": "always"
+            }
+      },
+      "json": {
+            "parser": {
+                  "allowComments": true,
+                  "allowTrailingCommas": true
+            },
+            "formatter": {
+                  "indentStyle": "space",
+                  "trailingCommas": "none"
+            }
+      }
 }
