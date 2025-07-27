@@ -1,19 +1,23 @@
 {
-	"$schema": "../../node_modules/wrangler/config-schema.json",
-	"name": "woym-template",
-	"main": ".output/server/index.mjs",
-	"compatibility_date": "2025-07-19",
-	"compatibility_flags": ["nodejs_compat"],
-	"assets": {
-		"directory": ".output/public"
-	},
-	"observability": {
-		"enabled": true
-	}
-	// "kv_namespaces": [
-	//   {
-	//     "binding": "CACHE",
-	//     "id": "<Your KV ID>",
-	//   },
-	// ],
+      "$schema": "../../node_modules/wrangler/config-schema.json",
+      "name": "woym-template",
+      "main": ".output/server/index.mjs",
+      "compatibility_date": "2025-07-19",
+      "compatibility_flags": ["nodejs_compat"],
+      "assets": {
+            "directory": ".output/public"
+      },
+      "observability": {
+            "enabled": true
+      },
+      "vars": {
+            "VITE_API_URL": "https://woym-template-api.waptik.workers.dev",
+            "VITE_APP_URL": "https://woym-template.waptik.workers.dev"
+      }
+      // "kv_namespaces": [
+      //   {
+      //     "binding": "CACHE",
+      //     "id": "<Your KV ID>",
+      //   },
+      // ],
 }
