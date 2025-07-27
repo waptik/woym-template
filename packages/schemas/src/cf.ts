@@ -1,7 +1,7 @@
 import { createEnv } from "@t3-oss/env-core";
 import { cloudflare } from "@woym/workers-types";
-import BASE_ENV from "./base";
 import z from "zod";
+import BASE_ENV from "./base";
 
 const { DB: _, ...globalEnv } = cloudflare.env;
 
@@ -18,13 +18,13 @@ export const workerEnv = createEnv({
 		API_URL: z.string().url().describe("Base URL for the API"),
 		WEBSITE_URL: z.string().url().describe("Base URL for the website"),
 		BETTER_AUTH_SECRET: z.string().describe("Secret for BetterAuth"),
-		CLOUDFLARE_ACCOUNT_ID: z.string().describe("Cloudflare account ID"),
-		CLOUDFLARE_DATABASE_ID: z.string().describe("Cloudflare database ID"),
-		CLOUDFLARE_D1_TOKEN: z.string().describe("Cloudflare D1 token"),
+		CLOUDFLARE_ACCOUNT_ID: z.string().optional().describe("Cloudflare account ID"),
+		CLOUDFLARE_DATABASE_ID: z.string().optional().describe("Cloudflare database ID"),
+		CLOUDFLARE_D1_TOKEN: z.string().optional().describe("Cloudflare D1 token"),
 		GOOGLE_GENERATIVE_AI_API_KEY: z.string().optional().describe("Google Generative AI API key"),
 	},
 });
 
-workerEnv;
+console.log("[pkg.schemas.cfs] Worker environment variables created", { workerEnv });
 
 export type WorkerEnv = typeof workerEnv;

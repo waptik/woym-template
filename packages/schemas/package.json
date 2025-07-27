@@ -5,12 +5,8 @@
 	"type": "module",
 	"exports": {
 		".": "./dist/index.js",
-		"./base": "./dist/base.js",
 		"./cf": "./dist/cf.js",
-		"./client": "./dist/client.js",
-		"./db": "./dist/db.js",
 		"./expo": "./dist/expo.js",
-		"./server": "./dist/server.js",
 		"./package.json": "./package.json"
 	},
 	"license": "MIT",

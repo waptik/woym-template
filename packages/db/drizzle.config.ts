@@ -1,8 +1,7 @@
-import { defineConfig } from "drizzle-kit"
-import { dbEnv } from "@woym/schemas/db";
+import { env } from "@woym/schemas";
+import { defineConfig } from "drizzle-kit";
 
-console.log("[drizzle.config.ts] Initializing Drizzle configuration with environment variables:",dbEnv);
-
+console.log("[drizzle.config.ts] Initializing Drizzle configuration with environment variables:", { env });
 
 export default defineConfig({
 	schema: "./src/schema",
@@ -12,12 +11,12 @@ export default defineConfig({
 	driver: "d1-http",
 	verbose: true,
 	dbCredentials: {
-		accountId: dbEnv.CLOUDFLARE_ACCOUNT_ID,
-		databaseId: dbEnv.CLOUDFLARE_DATABASE_ID,
-		token: dbEnv.CLOUDFLARE_D1_TOKEN,
+		accountId: env.CLOUDFLARE_ACCOUNT_ID || "",
+		databaseId: env.CLOUDFLARE_DATABASE_ID || "",
+		token: env.CLOUDFLARE_D1_TOKEN || "",
 	},
 	casing: "snake_case",
 	migrations: {
 		prefix: "timestamp",
 	},
-})
+});
