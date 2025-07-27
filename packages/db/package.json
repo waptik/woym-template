@@ -6,6 +6,7 @@
 	"exports": {
 		".": "./dist/index.js",
 		"./db": "./dist/db.js",
+		"./db-cli": "./dist/db-cli.js",
 		"./env": "./dist/env.js",
 		"./schema": "./dist/schema.js",
 		"./utils": "./dist/utils.js",
@@ -14,9 +15,9 @@
 	"license": "MIT",
 	"scripts": {
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
-		"dev": "tsdown --watch",
+		"dev": "tsdown",
 		"db:migrate": "wrangler d1 migrations apply woymx-db --remote",
-		"db:migrate:local": "wrangler d1 migrations apply database --local",
+		"db:migrate:local": "wrangler d1 migrations apply woymx-db --local",
 		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",

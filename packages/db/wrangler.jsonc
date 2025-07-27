@@ -19,9 +19,10 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "woymx-db-dev",
+			"database_name": "woymx-db",
 			"database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
-			"preview_database_id": "e3aa21e7-336d-4cc0-a2f5-9cf9dfda918f",
+			// "preview_database_id": "e3aa21e7-336d-4cc0-a2f5-9cf9dfda918f",
+			"preview_database_id": "localdb",
 			"migrations_dir": "./drizzle"
 		}
 	]

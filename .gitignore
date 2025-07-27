@@ -21,6 +21,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 **/.dev.vars.*
 **/.env
 **/.env.*
+!**/.env.example
 
 # wrangler
 **/.wrangler

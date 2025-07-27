@@ -1,20 +1,23 @@
-import { expo } from "@better-auth/expo"
-import { db, schema } from "@woym/db"
-import type { BetterAuthOptions } from "better-auth"
-import { drizzleAdapter } from "better-auth/adapters/drizzle"
-import { anonymous, oAuthProxy } from "better-auth/plugins"
+import { expo } from "@better-auth/expo";
+import type { BetterAuthOptions } from "better-auth";
+import { anonymous, oAuthProxy } from "better-auth/plugins";
 
 export interface AuthOptions {
-	baseUrl: string
-	productionUrl?: string
-	secret: string | undefined
-	origins?: string
+	baseUrl: string;
+	productionUrl?: string;
+	secret: string | undefined;
+	origins?: string;
 }
 
 export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
-	console.log("[auth.shared] Creating shared auth config with options:", options)
-	const origins = (options.origins || "").split(",").map((origin) => origin.trim())
-	const trustedOrigins = ["expo://", ...origins]
+	console.log("[auth.shared] Creating shared auth config with options:", options);
+	const origins = (options.origins || "")
+		.split(",")
+		.map((origin) => origin.trim())
+		.filter(Boolean);
+	const trustedOrigins = ["expo://", ...origins];
+	console.log("[auth.shared] Trusted origins:", trustedOrigins);
+
 	const plugins: BetterAuthOptions["plugins"] = [
 		oAuthProxy({
 			currentURL: options.baseUrl,
@@ -22,13 +25,10 @@ export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
 		}),
 		expo(),
 		anonymous(),
-	]
+	];
 
+	// If running in CLI mode, use the drizzle adapter with SQLite
 	const config = {
-		database: drizzleAdapter(db, {
-			provider: "sqlite",
-			schema,
-		}),
 		baseURL: options.baseUrl,
 		secret: options.secret,
 		plugins,
@@ -36,7 +36,10 @@ export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
 		advanced: {
 			crossSubDomainCookies: { enabled: true },
 		},
-	} satisfies BetterAuthOptions
+		rateLimit: {
+			enabled: true,
+		},
+	} satisfies BetterAuthOptions;
 
-	return config
-}
+	return config;
+};

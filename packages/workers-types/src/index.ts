@@ -4,9 +4,12 @@
 import * as CloudflareWorkersBindings from "cloudflare:workers"
 import { env } from "cloudflare:workers"
 
+console.log("[workers-types] Initializing Cloudflare Workers environment variables", env);
+
+
 // Export the main Cloudflare types that consumers will need
 export type Bindings = CloudflareBindings
-export type Env = Cloudflare.Env
+export type CloudflareEnv = Cloudflare.Env;
 
 export const cloudflare = {
 	env,

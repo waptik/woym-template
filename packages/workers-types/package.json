@@ -2,27 +2,29 @@
 	"name": "@woym/workers-types",
 	"private": true,
 	"version": "0.1.0",
+	"license": "MIT",
 	"type": "module",
-	"exports": {
-		".": "./src/index.ts",
-		"./package.json": "./package.json"
-	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"license": "MIT",
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
+	},
 	"scripts": {
-		"typegen": "wrangler types --env-interface CloudflareBindings",
-		"cf-typegen": "pnpm typegen && tsdown",
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"prebuild": "pnpm run cf-typegen",
+		"predev": "pnpm run cf-typegen",
+		"dev": "tsdown --watch",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"clean:simple": "rm -rf dist",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},
-	"dependencies": {
-		"wrangler": "^4.25.1"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@types/node": "catalog:",
 		"@woym/tsconfig": "workspace:*",
+		"wrangler": "catalog:",
 		"typescript": "catalog:"
 	}
 }
