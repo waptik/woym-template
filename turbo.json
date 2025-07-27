@@ -3,12 +3,14 @@
 	"ui": "tui",
 	"tasks": {
 		"build": {
+			"outputLogs": "full",
 			"dependsOn": [
 				"^build"
 			],
 			"inputs": [
 				"$TURBO_DEFAULT$",
-				".env*"
+				".env*",
+				".dev.vars*"
 			],
 			"outputs": [
 				"dist/**",
@@ -18,17 +20,18 @@
 				".cache/**",
 				".wrangler/**",
 				".tanstack/**",
-				".output/**"
+				".output/**",
+				"worker-configuration.d.ts"
 			]
 		},
 		"cf-typegen": {
 			"dependsOn": [
 				"^cf-typegen"
 			],
-			"cache": true,
-			"persistent": false,
+			"cache": false,
 			"outputs": [
-				"worker-configuration.d.ts"
+				"worker-configuration.d.ts",
+				"dist/**"
 			]
 		},
 		"//#knip": {},
@@ -50,7 +53,7 @@
 				"^dev"
 			],
 			"cache": false,
-			"persistent": false,
+			"outputLogs": "full",
 			"outputs": [
 				"dist/**",
 				"ios/**",
@@ -118,6 +121,9 @@
 				"CLOUDFLARE_ACCOUNT_ID",
 				"CLOUDFLARE_DATABASE_ID",
 				"CLOUDFLARE_D1_TOKEN"
+			],
+			"outputs": [
+				"drizzle/**"
 			]
 		},
 		"db:migrate": {

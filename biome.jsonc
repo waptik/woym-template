@@ -90,11 +90,7 @@
 					"level": "warn",
 					"fix": "safe",
 					"options": {
-						"functions": [
-							"clsx",
-							"cva",
-							"cn"
-						]
+						"functions": ["clsx", "cva", "cn"]
 					}
 				},
 				"noImportantStyles": "error"
@@ -123,10 +119,17 @@
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double",
-			"semicolons": "asNeeded"
+			"semicolons": "always"
 		}
 	},
 	"json": {
-		"formatter": {}
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
+		},
+		"formatter": {
+			"indentStyle": "space",
+			"trailingCommas": "none"
+		}
 	}
 }
