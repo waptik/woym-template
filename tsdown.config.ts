@@ -1,4 +1,4 @@
-import { defineConfig } from "tsdown"
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
 	workspace: { include: ["packages/*"] },
@@ -6,4 +6,4 @@ export default defineConfig({
 	// exports: true,
 	// fixedExtension: true,
 	// format: ["esm", "cjs"],
-})
+});

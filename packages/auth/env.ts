@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-core"
-import { z } from "zod/v4"
+import { createEnv } from "@t3-oss/env-core";
+import { z } from "zod/v4";
 
 export const authEnv = () =>
 	createEnv({
@@ -19,4 +19,4 @@ export const authEnv = () =>
 			// 	import.meta.env.VITE_SOURCE_COMMIT,
 		},
 		emptyStringAsUndefined: true,
-	})
+	});

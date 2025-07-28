@@ -1,5 +1,5 @@
 const BASE_ENV = {
 	emptyStringAsUndefined: true,
-} as const
+} as const;
 
-export default BASE_ENV
+export default BASE_ENV;

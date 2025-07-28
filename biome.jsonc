@@ -26,7 +26,6 @@
                   "**/package.json",
                   "**/wrangler.jsonc",
                   "**/vite.config.ts",
-                  "**/worker-configuration.d.ts",
                   "**/dev.vars*",
                   // to ignore all files/directories below:
                   "!**/node_modules/**",
@@ -50,6 +49,7 @@
                   "!**/.output/**",
                   "!**/.tanstack/**",
                   "!**/routeTree.gen.ts",
+                  "!**/worker-configuration.d.ts",
                   "!**/*.yaml",
                   "!**/*.json"
             ]

@@ -1,4 +1,4 @@
-import { defineConfig } from "tsdown"
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
 	entry: {
@@ -8,5 +8,5 @@ export default defineConfig({
 		utils: "./src/utils.ts",
 	},
 	exports: true,
-	external:["@woym/workers-types"]
-})
+	external: ["@woym/workers-types"],
+});

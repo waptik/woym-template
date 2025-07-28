@@ -1,18 +1,18 @@
-import { useForm } from "@tanstack/react-form"
-import { useNavigate } from "@tanstack/react-router"
-import { toast } from "sonner"
-import z from "zod/v4"
-import { authClient } from "@/lib/auth-client"
-import Loader from "./loader"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { useForm } from "@tanstack/react-form";
+import { useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
+import z from "zod/v4";
+import { authClient } from "@/lib/auth-client";
+import Loader from "./loader";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () => void }) {
 	const navigate = useNavigate({
 		from: "/",
-	})
-	const { isPending } = authClient.useSession()
+	});
+	const { isPending } = authClient.useSession();
 
 	const form = useForm({
 		defaultValues: {
@@ -31,14 +31,14 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
 					onSuccess: async () => {
 						await navigate({
 							to: "/dashboard",
-						})
-						toast.success("Sign up successful")
+						});
+						toast.success("Sign up successful");
 					},
 					onError: (error) => {
-						toast.error(error.error.message)
+						toast.error(error.error.message);
 					},
 				},
-			)
+			);
 		},
 		validators: {
 			onSubmit: z.object({
@@ -47,10 +47,10 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
 				password: z.string().min(8, "Password must be at least 8 characters"),
 			}),
 		},
-	})
+	});
 
 	if (isPending) {
-		return <Loader />
+		return <Loader />;
 	}
 
 	return (
@@ -59,9 +59,9 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
 
 			<form
 				onSubmit={(e) => {
-					e.preventDefault()
-					e.stopPropagation()
-					void form.handleSubmit()
+					e.preventDefault();
+					e.stopPropagation();
+					void form.handleSubmit();
 				}}
 				className="space-y-4"
 			>
@@ -156,5 +156,5 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
 				</Button>
 			</div>
 		</div>
-	)
+	);
 }

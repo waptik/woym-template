@@ -1,11 +1,11 @@
-import { expoClient } from "@better-auth/expo/client"
-import { createAuthClient } from "better-auth/react"
+import { expoClient } from "@better-auth/expo/client";
+import { createAuthClient } from "better-auth/react";
 
-type ExpoClientOptions = Parameters<typeof expoClient>[0]
+type ExpoClientOptions = Parameters<typeof expoClient>[0];
 
 interface ExpoAuthOptions {
-	baseURL: string
-	storage: ExpoClientOptions["storage"]
+	baseURL: string;
+	storage: ExpoClientOptions["storage"];
 }
 
 export function getExpoAuthClient(options: ExpoAuthOptions) {
@@ -17,7 +17,7 @@ export function getExpoAuthClient(options: ExpoAuthOptions) {
 				storage: options.storage,
 			}),
 		],
-	})
+	});
 }
 
-export type ExpoAuthClient = ReturnType<typeof getExpoAuthClient>
+export type ExpoAuthClient = ReturnType<typeof getExpoAuthClient>;
