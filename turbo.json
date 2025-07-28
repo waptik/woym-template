@@ -35,22 +35,11 @@
 				"dist/**"
 			]
 		},
-		"//#tsdown": {
-			"cache": true,
-			"persistent": false,
-			"outputs": [
-				"dist/**",
-				"worker-configuration.d.ts",
-				".wrangler/**",
-				".tanstack/**",
-				".output/**",
-				".nitro/**",
-				".turbo/**"
-			]
-		},
-		"//#knip": {},
-		"//#lint": {},
-		"//#lint:fix": {
+		"preview": {
+			"dependsOn": [
+				"build",
+				"^preview"
+			],
 			"cache": false
 		},
 		"typecheck": {
@@ -63,8 +52,10 @@
 			]
 		},
 		"dev": {
+			"with": [
+				"//#tsdown:watch"
+			],
 			"dependsOn": [
-				"//#tsdown",
 				"^dev"
 			],
 			"cache": false,
@@ -104,6 +95,37 @@
 				".turbo/**",
 				".wrangler/**"
 			]
+		},
+		"//#tsdown": {
+			"cache": false,
+			"persistent": false,
+			"outputs": [
+				"dist/**",
+				"worker-configuration.d.ts",
+				".wrangler/**",
+				".tanstack/**",
+				".output/**",
+				".nitro/**",
+				".turbo/**"
+			]
+		},
+		"//#tsdown:watch": {
+			"cache": false,
+			"persistent": false,
+			"outputs": [
+				"dist/**",
+				"worker-configuration.d.ts",
+				".wrangler/**",
+				".tanstack/**",
+				".output/**",
+				".nitro/**",
+				".turbo/**"
+			]
+		},
+		"//#knip": {},
+		"//#lint": {},
+		"//#lint:fix": {
+			"cache": false
 		},
 		"@woym/schemas#dev": {
 			"cache": false,

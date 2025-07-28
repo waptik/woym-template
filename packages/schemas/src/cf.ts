@@ -14,10 +14,19 @@ export const workerEnv = createEnv({
 	runtimeEnv,
 	server: {
 		// Add any server-side environment variables here if needed
-		CORS_ORIGINS: z.string().describe("Comma-separated list of allowed CORS origins"),
-		API_URL: z.string().url().describe("Base URL for the API"),
-		WEBSITE_URL: z.string().url().describe("Base URL for the website"),
-		BETTER_AUTH_SECRET: z.string().describe("Secret for BetterAuth"),
+		CORS_ORIGINS: z
+			.string()
+			.optional()
+			.default("http://localhost:3000")
+			.describe("Comma-separated list of allowed CORS origins"),
+		API_URL: z.string().url().optional().default("http://localhost:3000").describe("Base URL for the API"),
+		WEBSITE_URL: z
+			.string()
+			.url()
+			.optional()
+			.default("http://localhost:3001")
+			.describe("Base URL for the website"),
+		BETTER_AUTH_SECRET: z.string().optional().default("secret").describe("Secret for BetterAuth"),
 		CLOUDFLARE_ACCOUNT_ID: z.string().optional().describe("Cloudflare account ID"),
 		CLOUDFLARE_DATABASE_ID: z.string().optional().describe("Cloudflare database ID"),
 		CLOUDFLARE_D1_TOKEN: z.string().optional().describe("Cloudflare D1 token"),

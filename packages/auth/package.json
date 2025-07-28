@@ -25,7 +25,6 @@
 		"@types/node": "catalog:",
 		"@woym/db": "workspace:*",
 		"@woym/tsconfig": "workspace:*",
-		"@woym/workers-types": "workspace:*",
 		"typescript": "catalog:"
 	},
 	"dependencies": {

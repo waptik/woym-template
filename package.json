@@ -13,7 +13,6 @@
 		"biome:tracing:clean": "rm -f tracing.json filtered.json",
 		"build:dev": "turbo run dev --continue",
 		"build": "turbo run build",
-		"tsdown": "tsdown",
 		"check": "biome check --write .",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"clean:workspaces": "turbo run clean",
@@ -30,6 +29,9 @@
 		"dev:web": "turbo -F @woym/web dev",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write",
+		"preview": "turbo run preview",
+		"tsdown": "tsdown",
+		"tsdown:watch": "tsdown --watch",
 		"typecheck": "turbo typecheck",
 		"w:auth": "pnpm -F @woym/auth",
 		"w:db": "pnpm -F @woym/db",
@@ -40,6 +42,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.2",
 		"@turbo/gen": "^2.5.5",
+		"concurrently": "^9.2.0",
 		"tsdown": "catalog:",
 		"turbo": "^2.5.4",
 		"typescript": "catalog:"

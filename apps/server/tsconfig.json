@@ -2,17 +2,24 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "@woym/tsconfig/vite.json",
 	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
 		"strict": true,
+		"lib": [
+			"ESNext"
+		],
+		"types": [
+			"@cloudflare/workers-types",
+			"node"
+		],
 		"paths": {
 			"@/*": [
 				"./src/*"
 			]
 		},
-		"types": [
-			"./worker-configuration.d.ts",
-			"node"
-		],
 		"jsx": "react-jsx",
+		"outDir": "./dist",
 		"jsxImportSource": "hono/jsx"
 	},
 	"include": [

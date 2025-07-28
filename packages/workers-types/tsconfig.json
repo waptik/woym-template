@@ -2,19 +2,17 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "@woym/tsconfig/internal-package.json",
 	"compilerOptions": {
-		"composite": true,
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"declaration": true,
-		"declarationMap": true,
-		"emitDeclarationOnly": true,
-		"noEmit": false,
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
 		"baseUrl": ".",
 		"types": [
 			"./worker-configuration.d.ts",
+			"node"
 		],
 	},
 	"include": [
-		"worker-configuration.d.ts",
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"worker-configuration.d.ts"
 	],
 }

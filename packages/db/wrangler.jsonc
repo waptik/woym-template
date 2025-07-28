@@ -3,27 +3,24 @@
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-	"$schema": "../../node_modules/wrangler/config-schema.json",
-	"compatibility_date": "2025-07-19",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
-	// To set up D1 database:
-	// 1. Run: wrangler login
-	// 2. Run: wrangler d1 create your-database-name
-	// 3. Copy the output and paste below
-	// Then run migrations:
-	// bun db:generate
-	// To apply migrations locally, run:
-	// wrangler d1 migrations apply YOUR_DB_NAME --local
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "woymx-db",
-			"database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
-			// "preview_database_id": "e3aa21e7-336d-4cc0-a2f5-9cf9dfda918f",
-			"preview_database_id": "localdb",
-			"migrations_dir": "./drizzle"
-		}
-	]
+      "$schema": "../../node_modules/wrangler/config-schema.json",
+      "compatibility_date": "2025-07-19",
+      "compatibility_flags": ["nodejs_compat"],
+      // To set up D1 database:
+      // 1. Run: wrangler login
+      // 2. Run: wrangler d1 create your-database-name
+      // 3. Copy the output and paste below
+      // Then run migrations:
+      // bun db:generate
+      // To apply migrations locally, run:
+      // wrangler d1 migrations apply YOUR_DB_NAME --local
+      "d1_databases": [
+            {
+                  "binding": "DB",
+                  "database_name": "woymx-db",
+                  "database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
+                  "preview_database_id": "localdb",
+                  "migrations_dir": "./drizzle"
+            }
+      ]
 }

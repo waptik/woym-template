@@ -5,7 +5,7 @@ import z from "zod";
 import { publicProcedure } from "#/lib/orpc";
 
 export const todoRouter = {
-	getAll: publicProcedure.handler(async () => {
+	getAll: publicProcedure.route({ method: "GET", path: "/todos" }).handler(async () => {
 		return await db.select().from(todo);
 	}),
 

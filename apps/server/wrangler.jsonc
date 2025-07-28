@@ -9,9 +9,13 @@
       "compatibility_date": "2025-07-19",
       "compatibility_flags": ["nodejs_compat"],
       "vars": {
-            "NODE_ENV": "production"
+            "NODE_ENV": "production",
             // Add public environment variables here
             // Example: "CORS_ORIGIN": "https://your-domain.com"
+            "CORS_ORIGINS": "https://woym-template.waptik.workers.dev",
+            "API_URL": "https://woym-template-api.waptik.workers.dev",
+            "WEBSITE_URL": "https://woym-template.waptik.workers.dev",
+            "WORKER_NAME": "woym-template-api"
       },
       "observability": {
             "enabled": true

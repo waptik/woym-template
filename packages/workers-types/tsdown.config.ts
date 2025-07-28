@@ -5,4 +5,5 @@ export default defineConfig({
 		index: "./src/index.ts",
 	},
 	exports: true,
+	external: ["cloudflare:workers", "cloudflare:workflow"],
 });

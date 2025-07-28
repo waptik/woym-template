@@ -1,6 +1,7 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { rpcHandler } from "@woym/api/handlers";
-import { createContext } from "@woym/api/lib";
+import { openAPIGenerator, openapiHandler, rpcHandler } from "@woym/api/handlers";
+import { createContext, type HonoEnv } from "@woym/api/lib";
+import { appRouter } from "@woym/api/server";
 import { env } from "@woym/schemas";
 
 // imports without "@"
@@ -13,34 +14,44 @@ import { stream } from "hono/streaming";
 // local imports
 import { auth } from "./lib/auth";
 
-const app = new Hono();
+const app = new Hono<HonoEnv>();
 
 const origin = env.CORS_ORIGINS.split(",").map((origin) => origin.trim());
 
-app.use(logger());
-app.use(
-	"/*",
-	cors({
-		origin,
-		allowMethods: ["GET", "POST", "OPTIONS"],
-		allowHeaders: ["Content-Type", "Authorization"],
-		credentials: true,
-	}),
-)
+app
+	// start chained middleware
+	.use(logger())
+	.use(
+		"/*",
+		cors({
+			origin,
+			allowMethods: ["GET", "POST", "OPTIONS"],
+			allowHeaders: ["Content-Type", "Authorization"],
+			credentials: true,
+		}),
+	)
 	.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw))
-	.get("/", (c) => {
-		return c.text("OK");
-	})
-	.get("/_health", (c) => {
-		return c.json({ ok: true });
-	})
-	.get("/robots.txt", (c) => {
-		return c.text("User-agent: *\nDisallow: /");
+	.use("/v1/*", async (c, next) => {
+		const context = await createContext({
+			auth,
+			context: c,
+		});
+
+		const { matched, response } = await openapiHandler.handle(c.req.raw, {
+			prefix: "/v1",
+			context,
+		});
+
+		if (matched) {
+			return c.newResponse(response.body, response);
+		}
+
+		return await next();
 	})
 	.use("/rpc/*", async (c, next) => {
 		const context = await createContext({
-			headers: c.req.raw.headers,
 			auth,
+			context: c,
 		});
 		const { matched, response } = await rpcHandler.handle(c.req.raw, {
 			prefix: "/rpc",
@@ -51,6 +62,37 @@ app.use(
 			return c.newResponse(response.body, response);
 		}
 		return await next();
+	})
+	// start normal routes
+	.get("/", (c) => {
+		return c.text("OK");
+	})
+	.get("/cf", (c) => {
+		return c.json(c.req.raw.cf);
+	})
+	.get("/_health", (c) => {
+		return c.json({ ok: true });
+	})
+	.get("/robots.txt", (c) => {
+		return c.text("User-agent: *\nDisallow: /");
+	})
+	.get("/spec.json", async (c) => {
+		console.log("[workers-types] Generating OpenAPI spec");
+
+		return c.json(
+			await openAPIGenerator.generate(appRouter, {
+				info: {
+					title: "TSHOE API",
+					version: "1.0.0",
+					description: "The TanstackStart Hono oRPC Expo API",
+				},
+				servers: [
+					{
+						url: "/v1",
+					} /** Should use absolute URLs in production */,
+				],
+			}),
+		);
 	})
 	.post("/ai", async (c) => {
 		const body = await c.req.json();

@@ -19,6 +19,8 @@ export const env = createEnv({
 	server: {
 		NODE_ENV: z
 			.enum(["development", "production", "test"])
+			.optional()
+			.default("development")
 			.describe("The current environment the server is running in"),
 	},
 });

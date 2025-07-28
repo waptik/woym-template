@@ -6,8 +6,7 @@
     "build": "wrangler deploy --dry-run",
     "clean": "git clean -xdf .cache .turbo .wrangler dist node_modules",
     "typecheck": "tsc --noEmit",
-    "dev": "wrangler dev --ip=0.0.0.0 --port=3001",
-    "preview": "vite preview --port=3002",
+    "dev": "wrangler dev --remote --ip=0.0.0.0 --port=3001",
     "start": "wrangler dev --port=3001",
     "deploy": "wrangler deploy"
   },
@@ -16,7 +15,6 @@
     "@woym/api": "workspace:*",
     "@woym/auth": "workspace:*",
     "@woym/schemas": "workspace:*",
-    "@woym/workers-types": "workspace:*",
     "ai": "^4.3.16",
     "dotenv": "^16.4.7",
     "hono": "catalog:",
