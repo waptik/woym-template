@@ -1,19 +1,27 @@
-import { createQueryClient } from "@woym/api/client"
-import { createORPC } from "@woym/api/react"
+import { createQueryClient } from "@woym/api/client";
+import { createORPC } from "@woym/api/react";
 
 // local imports
-import { authClient } from "@/lib/auth-client"
-import { getBaseUrl } from "./base-url"
+import { authClient } from "@/lib/auth-client";
+import { getBaseUrl } from "./base-url";
 
-export const queryClient = createQueryClient()
+export const queryClient = createQueryClient({
+	defaultOptions: {
+		queries: {
+			retry: 3,
+			refetchOnWindowFocus: true,
+			refetchOnReconnect: true,
+			refetchOnMount: false,
+			staleTime: 1000 * 60 * 5, // 5 minutes
+		}
+	}
+});
 
-const baseUrl = getBaseUrl()
+const url = getBaseUrl();
 
-console.log("[ORPC] Base URL:", baseUrl)
-
-const url = `${baseUrl}/rpc`
+console.log("[ORPC] Base URL:", { url });
 
 export const { client, orpc } = createORPC({
 	url,
 	authClient,
-})
+});

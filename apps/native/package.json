@@ -1,7 +1,7 @@
 {
 	"name": "@woym/app",
 	"version": "1.0.0",
-	"main": "expo-router/entry",
+	"main": "index",
 	"scripts": {
 		"clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
 		"dev": "expo start --clear",
@@ -28,6 +28,7 @@
 		"expo-constants": "~17.1.4",
 		"expo-linking": "~7.1.4",
 		"expo-navigation-bar": "~4.2.3",
+		"expo-network": "^7.1.5",
 		"expo-router": "~5.1.4",
 		"expo-secure-store": "~14.2.3",
 		"expo-status-bar": "~2.2.3",
@@ -45,9 +46,9 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.26.10",
-		"@types/react": "^19.0.14",
-		"@woym/tsconfig": "workspace:*",
+		"@types/react": "catalog:react19",
 		"@woym/tailwind-config": "workspace:*",
+		"@woym/tsconfig": "workspace:*",
 		"tailwindcss": "^3.4.17",
 		"typescript": "catalog:"
 	},

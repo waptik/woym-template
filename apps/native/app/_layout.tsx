@@ -1,19 +1,15 @@
-import "@/polyfills";
-import {
-	DarkTheme,
-	DefaultTheme,
-	type Theme,
-	ThemeProvider,
-} from "@react-navigation/native";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from "@react-navigation/native";
+import { focusManager, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import React, { useRef } from "react";
+import { type AppStateStatus, Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "../global.css";
-import React, { useRef } from "react";
-import { Platform } from "react-native";
 
 // local imports
+import { useAppState } from "@/hooks/useAppState";
+import { useOnlineManager } from "@/hooks/useOnlineManager";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { NAV_THEME } from "@/lib/constants";
 import { useColorScheme } from "@/lib/use-color-scheme";
@@ -32,7 +28,17 @@ export const unstable_settings = {
 	initialRouteName: "(drawer)",
 };
 
+function onAppStateChange(status: AppStateStatus) {
+	// React Query already supports in web browser refetch on window focus by default
+	if (Platform.OS !== "web") {
+		focusManager.setFocused(status === "active");
+	}
+}
+
 export default function RootLayout() {
+	useOnlineManager();
+	useAppState(onAppStateChange);
+
 	const hasMounted = useRef(false);
 	const { colorScheme, isDarkColorScheme } = useColorScheme();
 	const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
@@ -59,14 +65,8 @@ export default function RootLayout() {
 				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
 				<GestureHandlerRootView style={{ flex: 1 }}>
 					<Stack>
-						<Stack.Screen
-							name="(drawer)"
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="modal"
-							options={{ title: "Modal", presentation: "modal" }}
-						/>
+						<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+						<Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
 					</Stack>
 				</GestureHandlerRootView>
 			</ThemeProvider>
@@ -75,6 +75,4 @@ export default function RootLayout() {
 }
 
 const useIsomorphicLayoutEffect =
-	Platform.OS === "web" && typeof window === "undefined"
-		? React.useEffect
-		: React.useLayoutEffect;
+	Platform.OS === "web" && typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
