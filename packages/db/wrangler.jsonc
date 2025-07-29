@@ -4,7 +4,7 @@
  */
 {
       "$schema": "../../node_modules/wrangler/config-schema.json",
-      "compatibility_date": "2025-07-19",
+      "compatibility_date": "2025-07-26",
       "compatibility_flags": ["nodejs_compat"],
       // To set up D1 database:
       // 1. Run: wrangler login
