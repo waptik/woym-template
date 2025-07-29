@@ -1,5 +1,6 @@
 import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from "@react-navigation/native";
 import { focusManager, QueryClientProvider } from "@tanstack/react-query";
+import { BetterAuthProvider } from "@woym/auth/react";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef } from "react";
@@ -11,6 +12,7 @@ import "../global.css";
 import { useAppState } from "@/hooks/useAppState";
 import { useOnlineManager } from "@/hooks/useOnlineManager";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
+import { authClient } from "@/lib/auth-client";
 import { NAV_THEME } from "@/lib/constants";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { queryClient } from "@/utils/orpc";
@@ -61,15 +63,20 @@ export default function RootLayout() {
 	}
 	return (
 		<QueryClientProvider client={queryClient}>
-			<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-				<GestureHandlerRootView style={{ flex: 1 }}>
-					<Stack>
-						<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-						<Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
-					</Stack>
-				</GestureHandlerRootView>
-			</ThemeProvider>
+			<BetterAuthProvider authClient={authClient}>
+				<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+					<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<Stack>
+							<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+							<Stack.Screen
+								name="modal"
+								options={{ title: "Modal", presentation: "modal" }}
+							/>
+						</Stack>
+					</GestureHandlerRootView>
+				</ThemeProvider>
+			</BetterAuthProvider>
 		</QueryClientProvider>
 	);
 }

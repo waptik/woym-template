@@ -24,7 +24,9 @@ export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
 			productionURL: options.productionUrl,
 		}),
 		expo(),
-		anonymous(),
+		anonymous({
+			emailDomainName: "example.com",
+		}),
 	];
 
 	// If running in CLI mode, use the drizzle adapter with SQLite
@@ -38,6 +40,15 @@ export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
 		},
 		rateLimit: {
 			enabled: true,
+		},
+		session: {
+			cookieCache: {
+				enabled: true,
+				maxAge: 60 * 30, // 30 minutes
+			},
+
+			expiresIn: 60 * 60 * 24 * 10, // 10 days
+			updateAge: 60 * 60 * 24, // Update session every day
 		},
 	} satisfies BetterAuthOptions;
 

@@ -13,10 +13,15 @@ export type CreateContextOptions = {
 };
 
 export async function createContext({ auth, context }: CreateContextOptions) {
-	console.log(">>> oRPC Request from", context.req.header("x-orpc-source") ?? "unknown", "by", "anonymous");
+	console.log(
+		"[pkg/api.context] >> oRPC Request from",
+		context.req.header("x-orpc-source") ?? "unknown",
+		"by",
+		"anonymous",
+	);
 	const authApi = auth.api;
 	const request = context.req.raw.cf; // as HonoRequest;
-	console.log("[pkg/api.context] Cloudflare Workers Request", JSON.stringify(request, null, 2));
+	console.log("[pkg/api.context] >> Cloudflare Workers Request in region:", request?.region);
 
 	const session = await authApi.getSession({
 		headers: context.req.raw.headers,

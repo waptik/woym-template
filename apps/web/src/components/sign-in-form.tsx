@@ -1,5 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { useNavigate } from "@tanstack/react-router";
+import { useAuth } from "@woym/auth/react";
 import { toast } from "sonner";
 import z from "zod/v4";
 import { authClient } from "@/lib/auth-client";
@@ -12,6 +13,9 @@ export default function SignInForm({ onSwitchToSignUp }: { onSwitchToSignUp: () 
 	const navigate = useNavigate({
 		from: "/",
 	});
+	const { user, signIn, isLoading, error } = useAuth();
+	console.log("[SignInForm] User:", { user, error });
+
 	const { isPending } = authClient.useSession();
 
 	const form = useForm({
@@ -46,7 +50,7 @@ export default function SignInForm({ onSwitchToSignUp }: { onSwitchToSignUp: () 
 		},
 	});
 
-	if (isPending) {
+	if (isLoading || isPending) {
 		return <Loader />;
 	}
 
@@ -115,13 +119,23 @@ export default function SignInForm({ onSwitchToSignUp }: { onSwitchToSignUp: () 
 							className="w-full"
 							disabled={!state.canSubmit || state.isSubmitting}
 						>
-							{state.isSubmitting ? "Submitting..." : "Sign In"}
+							{state.isSubmitting ? "Submitting..." : "Sign In with Email"}
 						</Button>
 					)}
 				</form.Subscribe>
 			</form>
 
-			<div className="mt-4 text-center">
+			<div className="my-6 flex items-center">
+				<div className="flex-1 border-gray-300 border-t" />
+				<span className="mx-4 text-gray-500 text-sm">or</span>
+				<div className="flex-1 border-gray-300 border-t" />
+			</div>
+
+			<Button variant="outline" onClick={signIn} className="mb-4 w-full" disabled={isLoading || isPending}>
+				Continue as Guest
+			</Button>
+
+			<div className="text-center">
 				<Button
 					variant="link"
 					onClick={onSwitchToSignUp}

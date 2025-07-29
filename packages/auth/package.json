@@ -12,6 +12,7 @@
 		"./env": "./dist/env.js",
 		"./expo": "./dist/expo.js",
 		"./react": "./dist/react.js",
+		"./react/client": "./dist/react/client.js",
 		"./shared": "./dist/shared.js",
 		"./package.json": "./package.json"
 	},
@@ -21,8 +22,14 @@
 		"generate": "bunx --bun @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/schema/auth.ts",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
 	},
+	"peerDependencies": {
+		"react": "^18.3.1 || ^19.0.0",
+		"react-dom": "^18.3.1 || ^19.0.0"
+	},
 	"devDependencies": {
 		"@types/node": "catalog:",
+		"@types/react": "catalog:react19",
+		"@types/react-dom": "catalog:react19",
 		"@woym/db": "workspace:*",
 		"@woym/tsconfig": "workspace:*",
 		"typescript": "catalog:"
