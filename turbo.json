@@ -5,7 +5,6 @@
 		"build": {
 			"outputLogs": "full",
 			"dependsOn": [
-				"//#tsdown",
 				"^build"
 			],
 			"inputs": [
@@ -52,14 +51,12 @@
 			]
 		},
 		"dev": {
-			"with": [
-				"//#tsdown:watch"
-			],
 			"dependsOn": [
-				"^dev"
+				"^build"
 			],
 			"cache": false,
 			"outputLogs": "full",
+			"persistent": true,
 			"inputs": [
 				"$TURBO_DEFAULT$",
 				".env*",
@@ -111,7 +108,7 @@
 		},
 		"//#tsdown:watch": {
 			"cache": false,
-			"persistent": false,
+			"persistent": true,
 			"outputs": [
 				"dist/**",
 				"worker-configuration.d.ts",
@@ -122,26 +119,64 @@
 				".turbo/**"
 			]
 		},
+		"@woym/workers-types#build": {
+			"dependsOn": [],
+			"outputs": [
+				"dist/**",
+				"worker-configuration.d.ts"
+			],
+			"cache": true
+		},
+		"@woym/schemas#build": {
+			"dependsOn": [
+				"@woym/workers-types#build"
+			],
+			"outputs": [
+				"dist/**"
+			],
+			"cache": true
+		},
+		"@woym/db#build": {
+			"dependsOn": [
+				"@woym/schemas#build"
+			],
+			"outputs": [
+				"dist/**",
+				"worker-configuration.d.ts"
+			],
+			"cache": true
+		},
+		"@woym/auth#build": {
+			"dependsOn": [
+				"@woym/schemas#build"
+			],
+			"outputs": [
+				"dist/**"
+			],
+			"cache": true
+		},
+		"@woym/id#build": {
+			"dependsOn": [],
+			"outputs": [
+				"dist/**"
+			],
+			"cache": true
+		},
+		"@woym/api#build": {
+			"dependsOn": [
+				"@woym/db#build",
+				"@woym/auth#build",
+				"@woym/workers-types#build"
+			],
+			"outputs": [
+				"dist/**"
+			],
+			"cache": true
+		},
 		"//#knip": {},
 		"//#lint": {},
 		"//#lint:fix": {
 			"cache": false
-		},
-		"@woym/schemas#dev": {
-			"cache": false,
-			"persistent": false
-		},
-		"@woym/api#dev": {
-			"cache": false,
-			"persistent": false
-		},
-		"@woym/db#dev": {
-			"cache": false,
-			"persistent": false
-		},
-		"@woym/auth#dev": {
-			"cache": false,
-			"persistent": false
 		},
 		"clean": {
 			"cache": false

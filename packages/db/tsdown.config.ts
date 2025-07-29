@@ -8,5 +8,5 @@ export default defineConfig({
 		utils: "./src/utils.ts",
 	},
 	exports: true,
-	external: ["@woym/workers-types"],
+	external: ["@woym/workers-types", "cloudflare:workers", "cloudflare:workflow"],
 });

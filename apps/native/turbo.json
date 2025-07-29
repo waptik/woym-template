@@ -33,7 +33,7 @@
 				"android/**"
 			],
 			"dependsOn": [
-				"@woym/api#dev"
+				"@woym/api#build"
 			],
 			"cache": false,
 			"persistent": true,

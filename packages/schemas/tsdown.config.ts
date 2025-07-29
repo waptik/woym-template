@@ -7,4 +7,5 @@ export default defineConfig({
 		cf: "./src/cf.ts",
 	},
 	exports: true,
+	external: ["cloudflare:workers", "cloudflare:workflow"],
 });

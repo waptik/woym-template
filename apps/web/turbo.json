@@ -24,8 +24,8 @@
 		},
 		"dev": {
 			"dependsOn": [
-				"@woym/auth#dev",
-				"@woym/api#dev"
+				"@woym/auth#build",
+				"@woym/api#build"
 			],
 			"cache": false,
 			"persistent": true,

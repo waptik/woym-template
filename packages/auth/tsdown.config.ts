@@ -11,5 +11,5 @@ export default defineConfig({
 		env: "./env.ts",
 	},
 	exports: true,
-	external: ["react", "react-dom"],
+	external: ["react", "react-dom", "cloudflare:workers", "cloudflare:workflow"],
 });

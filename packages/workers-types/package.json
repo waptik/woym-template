@@ -16,6 +16,7 @@
 		"./package.json": "./package.json"
 	},
 	"scripts": {
+		"build": "tsdown",
 		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
 		"prebuild": "pnpm run cf-typegen",
 		"predev": "pnpm run cf-typegen",
