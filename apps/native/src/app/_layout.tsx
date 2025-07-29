@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useRef } from "react";
 import { type AppStateStatus, Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import "../global.css";
+import "../../global.css";
 
 // local imports
 import { useAppState } from "@/hooks/useAppState";

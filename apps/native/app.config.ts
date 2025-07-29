@@ -3,10 +3,10 @@ import type { ConfigContext, ExpoConfig } from "expo/config"
 export default ({ config }: ConfigContext): ExpoConfig => {
 	return {
 		...config,
-		name: "Woym",
-		slug: "woym",
+		name: "My Better App",
+		slug: "mybettertapp",
 		version: "1.0.0",
-		scheme: "woym",
+		scheme: "mybettertapp",
 		web: {
 			bundler: "metro",
 			output: "server",
@@ -31,14 +31,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 		assetBundlePatterns: ["**/*"],
 		ios: {
 			supportsTablet: true,
-			bundleIdentifier: "com.amanvarshney01.mybettertapp",
+			bundleIdentifier: "xyz.waptik.mybettertapp",
 		},
 		android: {
 			adaptiveIcon: {
 				foregroundImage: "./assets/adaptive-icon.png",
 				backgroundColor: "#ffffff",
 			},
-			package: "com.amanvarshney01.mybettertapp",
+			package: "xyz.waptik.mybettertapp",
 			edgeToEdgeEnabled: true,
 		},
 	}

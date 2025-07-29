@@ -15,7 +15,7 @@
 		"allowJs": true,
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"]
 		},
 		"jsx": "react-native",
 		"checkJs": false,

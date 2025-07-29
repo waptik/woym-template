@@ -1,18 +1,18 @@
-import { useChat } from "@ai-sdk/react"
-import { Ionicons } from "@expo/vector-icons"
-import { fetch as expoFetch } from "expo/fetch"
-import { useEffect, useRef } from "react"
-import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { Container } from "@/components/container"
-import { getBaseUrl } from "@/utils/base-url"
+import { useChat } from "@ai-sdk/react";
+import { Ionicons } from "@expo/vector-icons";
+import { fetch as expoFetch } from "expo/fetch";
+import { useEffect, useRef } from "react";
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Container } from "@/components/container";
+import { getBaseUrl } from "@/utils/base-url";
 
 // Utility function to generate API URLs
 const generateAPIUrl = (relativePath: string) => {
-	const serverUrl = getBaseUrl()
+	const serverUrl = getBaseUrl();
 
-	const path = relativePath.startsWith("/") ? relativePath : `/${relativePath}`
-	return serverUrl.concat(path)
-}
+	const path = relativePath.startsWith("/") ? relativePath : `/${relativePath}`;
+	return serverUrl.concat(path);
+};
 
 export default function AIScreen() {
 	const { messages, input, handleInputChange, handleSubmit, error } = useChat({
@@ -20,29 +20,31 @@ export default function AIScreen() {
 		api: generateAPIUrl("/ai"),
 		onError: (error) => console.error(error, "AI Chat Error"),
 		maxSteps: 5,
-	})
+	});
 
-	const scrollViewRef = useRef<ScrollView>(null)
+	const scrollViewRef = useRef<ScrollView>(null);
 
 	useEffect(() => {
-		scrollViewRef.current?.scrollToEnd({ animated: true })
-	}, [messages])
+		scrollViewRef.current?.scrollToEnd({ animated: true });
+	}, []);
 
 	const onSubmit = () => {
 		if (input.trim()) {
-			handleSubmit()
+			handleSubmit();
 		}
-	}
+	};
 
 	if (error) {
 		return (
 			<Container>
 				<View className="flex-1 items-center justify-center px-4">
 					<Text className="mb-4 text-center text-destructive text-lg">Error: {error.message}</Text>
-					<Text className="text-center text-muted-foreground">Please check your connection and try again.</Text>
+					<Text className="text-center text-muted-foreground">
+						Please check your connection and try again.
+					</Text>
 				</View>
 			</Container>
-		)
+		);
 	}
 
 	return (
@@ -54,10 +56,16 @@ export default function AIScreen() {
 						<Text className="text-muted-foreground">Chat with our AI assistant</Text>
 					</View>
 
-					<ScrollView ref={scrollViewRef} className="mb-4 flex-1" showsVerticalScrollIndicator={false}>
+					<ScrollView
+						ref={scrollViewRef}
+						className="mb-4 flex-1"
+						showsVerticalScrollIndicator={false}
+					>
 						{messages.length === 0 ? (
 							<View className="flex-1 items-center justify-center">
-								<Text className="text-center text-lg text-muted-foreground">Ask me anything to get started!</Text>
+								<Text className="text-center text-lg text-muted-foreground">
+									Ask me anything to get started!
+								</Text>
 							</View>
 						) : (
 							<View className="space-y-4">
@@ -65,13 +73,17 @@ export default function AIScreen() {
 									<View
 										key={message.id}
 										className={`rounded-lg p-3 ${
-											message.role === "user" ? "ml-8 bg-primary/10" : "mr-8 border border-border bg-card"
+											message.role === "user"
+												? "ml-8 bg-primary/10"
+												: "mr-8 border border-border bg-card"
 										}`}
 									>
 										<Text className="mb-1 font-semibold text-foreground text-sm">
 											{message.role === "user" ? "You" : "AI Assistant"}
 										</Text>
-										<Text className="text-foreground leading-relaxed">{message.content}</Text>
+										<Text className="text-foreground leading-relaxed">
+											{message.content}
+										</Text>
 									</View>
 								))}
 							</View>
@@ -95,8 +107,8 @@ export default function AIScreen() {
 								placeholderTextColor="#6b7280"
 								className="max-h-[120px] min-h-[40px] flex-1 rounded-md border border-border bg-background px-3 py-2 text-foreground"
 								onSubmitEditing={(e) => {
-									handleSubmit(e)
-									e.preventDefault()
+									handleSubmit(e);
+									e.preventDefault();
 								}}
 								autoFocus={true}
 							/>
@@ -105,12 +117,16 @@ export default function AIScreen() {
 								disabled={!input.trim()}
 								className={`rounded-md p-2 ${input.trim() ? "bg-primary" : "bg-muted"}`}
 							>
-								<Ionicons name="send" size={20} color={input.trim() ? "#ffffff" : "#6b7280"} />
+								<Ionicons
+									name="send"
+									size={20}
+									color={input.trim() ? "#ffffff" : "#6b7280"}
+								/>
 							</TouchableOpacity>
 						</View>
 					</View>
 				</View>
 			</KeyboardAvoidingView>
 		</Container>
-	)
+	);
 }
