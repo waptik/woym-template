@@ -50,7 +50,11 @@ export function BetterAuthProvider({ children, authClient }: AuthProviderProps) 
 	const [error, setError] = useState<Error | null>(null);
 	const { data: authSession, error: sessionError, isPending } = authClient.useSession();
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: only run once on mount
 	useEffect(() => {
+		console.info("[BetterAuthProvider] Initializing auth session", authSession);
+		console.info("[BetterAuthProvider] Current user:", user);
+
 		async function syncSession() {
 			if (authSession && !user) {
 				setUser(authSession.user);
@@ -63,13 +67,13 @@ export function BetterAuthProvider({ children, authClient }: AuthProviderProps) 
 			setError(null);
 			setIsLoading(false);
 		};
-	}, [authSession, user]);
+	}, []);
 
 	const signIn = async () => {
 		setIsLoading(true);
 		try {
 			// logout any existing session before signing in anonymously
-			// await authClient.signOut();
+			await authClient.signOut();
 
 			// Sign in anonymously
 			const anonymousSession = await authClient.signIn.anonymous();

@@ -12,5 +12,4 @@ export const cloudflare = {
 	env,
 	bindings: env as Bindings,
 	workers: CloudflareWorkersBindings,
-	see: "uhu",
 };

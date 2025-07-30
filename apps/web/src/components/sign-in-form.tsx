@@ -1,6 +1,7 @@
 import { useForm } from "@tanstack/react-form";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@woym/auth/react";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import z from "zod/v4";
 import { authClient } from "@/lib/auth-client";
@@ -13,10 +14,23 @@ export default function SignInForm({ onSwitchToSignUp }: { onSwitchToSignUp: () 
 	const navigate = useNavigate({
 		from: "/",
 	});
-	const { user, signIn, isLoading, error } = useAuth();
-	console.log("[SignInForm] User:", { user, error });
+	const { signIn, isLoading, error, isAuthenticated } = useAuth();
 
 	const { isPending } = authClient.useSession();
+
+	useEffect(() => {
+		if (error) {
+			toast.error(error.message);
+		}
+	}, [error]);
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			void navigate({
+				to: "/dashboard",
+			});
+		}
+	}, [isAuthenticated, navigate]);
 
 	const form = useForm({
 		defaultValues: {

@@ -10,39 +10,41 @@ export const rpcHandler = new RPCHandler(appRouter, {
 
 	clientInterceptors: [
 		onError((error) => {
-			if (
-				error instanceof ORPCError &&
-				error.code === "BAD_REQUEST" &&
-				error.cause instanceof ValidationError
-			) {
-				// If you only use Zod you can safely cast to ZodIssue[]
-				const zodError = new ZodError(error.cause.issues as ZodIssue[]);
-
-				console.log("INPUT_VALIDATION_ERROR", {
-					zodError: zodError.toString(),
-				});
-
-				throw new ORPCError("INPUT_VALIDATION_FAILED", {
-					status: 422,
-					data: zodError.flatten(),
+			if (error instanceof ORPCError) {
+				console.log("[pkg/api] oRPC >> ORPC_ERROR", {
+					code: error.code,
+					message: error.message,
+					data: error.data,
+					status: error.status,
 					cause: error.cause,
 				});
-			}
 
-			if (
-				error instanceof ORPCError &&
-				error.code === "INTERNAL_SERVER_ERROR" &&
-				error.cause instanceof ValidationError
-			) {
-				const zodError = new ZodError(error.cause.issues as ZodIssue[]);
+				if (error.code === "BAD_REQUEST" && error.cause instanceof ValidationError) {
+					// If you only use Zod you can safely cast to ZodIssue[]
+					const zodError = new ZodError(error.cause.issues as ZodIssue[]);
 
-				console.log("OUTPUT_VALIDATION_ERROR", {
-					zodError: zodError.toString(),
-				});
+					console.log("INPUT_VALIDATION_ERROR", {
+						zodError: zodError.toString(),
+					});
 
-				throw new ORPCError("OUTPUT_VALIDATION_FAILED", {
-					cause: error.cause,
-				});
+					throw new ORPCError("INPUT_VALIDATION_FAILED", {
+						status: 422,
+						data: zodError.flatten(),
+						cause: error.cause,
+					});
+				}
+
+				if (error.code === "INTERNAL_SERVER_ERROR" && error.cause instanceof ValidationError) {
+					const zodError = new ZodError(error.cause.issues as ZodIssue[]);
+
+					console.log("OUTPUT_VALIDATION_ERROR", {
+						zodError: zodError.toString(),
+					});
+
+					throw new ORPCError("OUTPUT_VALIDATION_FAILED", {
+						cause: error.cause,
+					});
+				}
 			}
 		}),
 	],

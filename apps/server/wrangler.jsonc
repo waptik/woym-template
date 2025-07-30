@@ -14,11 +14,14 @@
             // Example: "CORS_ORIGIN": "https://your-domain.com"
             "CORS_ORIGINS": "https://woym-template.waptik.workers.dev",
             "API_URL": "https://woym-template-api.waptik.workers.dev",
-            "WEBSITE_URL": "https://woym-template.waptik.workers.dev",
-            "WORKER_NAME": "woym-template-api"
+            "WEBSITE_URL": "https://woym-template.waptik.workers.dev"
       },
       "observability": {
             "enabled": true
+      },
+      "dev": {
+            "port": 3001,
+            "ip": "0.0.0.0"
       },
       // To set up D1 database:
       // 1. Run: wrangler login
@@ -31,9 +34,9 @@
       "d1_databases": [
             {
                   "binding": "DB",
-                  "database_name": "woymx-db-dev",
-                  "database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
-                  "preview_database_id": "e3aa21e7-336d-4cc0-a2f5-9cf9dfda918f"
+                  "database_name": "woym-template-db",
+                  "database_id": "665a9f00-1842-4b75-94ee-82b70acb0791",
+                  "migrations_dir": "../../packages/db/drizzle"
             }
       ]
 }

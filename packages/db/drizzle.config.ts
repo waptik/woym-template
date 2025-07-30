@@ -1,4 +1,7 @@
+import dotenv from "dotenv";
 import { defineConfig } from "drizzle-kit";
+
+dotenv.config({ path: "../../apps/server/.env" });
 
 console.log("[drizzle.config.ts] Initializing Drizzle configuration with environment variables");
 

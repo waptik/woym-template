@@ -17,9 +17,8 @@
       "d1_databases": [
             {
                   "binding": "DB",
-                  "database_name": "woymx-db",
-                  "database_id": "4a20ec4a-a2bf-4d49-b0fc-899447965e44",
-                  "preview_database_id": "localdb",
+                  "database_name": "woym-template-db",
+                  "database_id": "665a9f00-1842-4b75-94ee-82b70acb0791",
                   "migrations_dir": "./drizzle"
             }
       ]

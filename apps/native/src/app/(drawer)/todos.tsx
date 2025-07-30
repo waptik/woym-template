@@ -1,47 +1,47 @@
-import { Ionicons } from "@expo/vector-icons"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { useState } from "react"
-import { ActivityIndicator, Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Ionicons } from "@expo/vector-icons";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { ActivityIndicator, Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-import { Container } from "@/components/container"
-import { orpc } from "@/utils/orpc"
+import { Container } from "@/components/container";
+import { orpc } from "@/utils/orpc";
 
 export default function TodosScreen() {
-	const [newTodoText, setNewTodoText] = useState("")
+	const [newTodoText, setNewTodoText] = useState("");
 
-	const todos = useQuery(orpc.todo.getAll.queryOptions())
+	const todos = useQuery(orpc.todos.getAll.queryOptions());
 	const createMutation = useMutation(
-		orpc.todo.create.mutationOptions({
+		orpc.todos.create.mutationOptions({
 			onSuccess: () => {
-				todos.refetch()
-				setNewTodoText("")
+				todos.refetch();
+				setNewTodoText("");
 			},
 		}),
-	)
+	);
 	const toggleMutation = useMutation(
-		orpc.todo.toggle.mutationOptions({
+		orpc.todos.toggle.mutationOptions({
 			onSuccess: () => {
-				todos.refetch()
+				todos.refetch();
 			},
 		}),
-	)
+	);
 	const deleteMutation = useMutation(
-		orpc.todo.delete.mutationOptions({
+		orpc.todos.delete.mutationOptions({
 			onSuccess: () => {
-				todos.refetch()
+				todos.refetch();
 			},
 		}),
-	)
+	);
 
 	const handleAddTodo = () => {
 		if (newTodoText.trim()) {
-			createMutation.mutate({ text: newTodoText })
+			createMutation.mutate({ text: newTodoText });
 		}
-	}
+	};
 
 	const handleToggleTodo = (id: number, completed: boolean) => {
-		toggleMutation.mutate({ id, completed: !completed })
-	}
+		toggleMutation.mutate({ id, completed: !completed });
+	};
 
 	const handleDeleteTodo = (id: number) => {
 		Alert.alert("Delete Todo", "Are you sure you want to delete this todo?", [
@@ -51,8 +51,8 @@ export default function TodosScreen() {
 				style: "destructive",
 				onPress: () => deleteMutation.mutate({ id }),
 			},
-		])
-	}
+		]);
+	};
 
 	return (
 		<Container>
@@ -78,7 +78,9 @@ export default function TodosScreen() {
 									onPress={handleAddTodo}
 									disabled={createMutation.isPending || !newTodoText.trim()}
 									className={`rounded-md px-4 py-2 ${
-										createMutation.isPending || !newTodoText.trim() ? "bg-muted" : "bg-primary"
+										createMutation.isPending || !newTodoText.trim()
+											? "bg-muted"
+											: "bg-primary"
 									}`}
 								>
 									{createMutation.isPending ? (
@@ -95,7 +97,9 @@ export default function TodosScreen() {
 								<ActivityIndicator size="large" color="#3b82f6" />
 							</View>
 						) : todos.data?.length === 0 ? (
-							<Text className="py-8 text-center text-muted-foreground">No todos yet. Add one above!</Text>
+							<Text className="py-8 text-center text-muted-foreground">
+								No todos yet. Add one above!
+							</Text>
 						) : (
 							<View className="space-y-2">
 								{todos.data?.map((todo) => (
@@ -104,23 +108,45 @@ export default function TodosScreen() {
 										className="flex-row items-center justify-between rounded-md border border-border bg-background p-3"
 									>
 										<View className="flex-1 flex-row items-center">
-											<TouchableOpacity onPress={() => handleToggleTodo(todo.id, todo.completed)} className="mr-3">
+											<TouchableOpacity
+												onPress={() =>
+													handleToggleTodo(todo.id, todo.completed)
+												}
+												className="mr-3"
+											>
 												<Ionicons
-													name={todo.completed ? "checkbox" : "square-outline"}
+													name={
+														todo.completed
+															? "checkbox"
+															: "square-outline"
+													}
 													size={24}
-													color={todo.completed ? "#22c55e" : "#6b7280"}
+													color={
+														todo.completed
+															? "#22c55e"
+															: "#6b7280"
+													}
 												/>
 											</TouchableOpacity>
 											<Text
 												className={`flex-1 ${
-													todo.completed ? "text-muted-foreground line-through" : "text-foreground"
+													todo.completed
+														? "text-muted-foreground line-through"
+														: "text-foreground"
 												}`}
 											>
 												{todo.text}
 											</Text>
 										</View>
-										<TouchableOpacity onPress={() => handleDeleteTodo(todo.id)} className="ml-2 p-1">
-											<Ionicons name="trash-outline" size={20} color="#ef4444" />
+										<TouchableOpacity
+											onPress={() => handleDeleteTodo(todo.id)}
+											className="ml-2 p-1"
+										>
+											<Ionicons
+												name="trash-outline"
+												size={20}
+												color="#ef4444"
+											/>
 										</TouchableOpacity>
 									</View>
 								))}
@@ -130,5 +156,5 @@ export default function TodosScreen() {
 				</View>
 			</ScrollView>
 		</Container>
-	)
+	);
 }

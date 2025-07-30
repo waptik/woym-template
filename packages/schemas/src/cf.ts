@@ -7,7 +7,7 @@ const { DB: _, ...globalEnv } = cloudflare.env;
 
 const runtimeEnv = globalEnv; // as unknown as NodeJS.ProcessEnv
 
-console.log("[pkg.schemas.cfs] Environment variables initialized", runtimeEnv);
+console.log("[pkg.schemas.cfs] Environment variables initialized");
 
 export const workerEnv = createEnv({
 	...BASE_ENV,
@@ -34,6 +34,6 @@ export const workerEnv = createEnv({
 	},
 });
 
-console.log("[pkg.schemas.cfs] Worker environment variables created", { workerEnv });
+console.log("[pkg.schemas.cfs] Worker environment variables created", workerEnv.API_URL);
 
 export type WorkerEnv = typeof workerEnv;

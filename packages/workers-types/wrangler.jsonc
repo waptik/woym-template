@@ -10,7 +10,7 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "woym-database",
+			"database_name": "woym-template-db",
 			"database_id": "NONE"
 		}
 	]

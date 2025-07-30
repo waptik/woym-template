@@ -17,12 +17,12 @@ _.log
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # dotenv environment variable files
-**/.dev.vars
 **/.dev.vars.*
-**/.env
 **/.env.*
-!**/.env.example
-
+**/.flaskenv*
+!**/*.example
+!**/.env.project
+!**/.env.vault
 # wrangler
 **/.wrangler
 

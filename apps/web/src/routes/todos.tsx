@@ -15,9 +15,9 @@ export const Route = createFileRoute("/todos")({
 function TodosRoute() {
 	const [newTodoText, setNewTodoText] = useState("");
 
-	const todos = useQuery(orpc.todo.getAll.queryOptions());
+	const todos = useQuery(orpc.todos.getAll.queryOptions());
 	const createMutation = useMutation(
-		orpc.todo.create.mutationOptions({
+		orpc.todos.create.mutationOptions({
 			onSuccess: () => {
 				todos.refetch();
 				setNewTodoText("");
@@ -25,14 +25,14 @@ function TodosRoute() {
 		}),
 	);
 	const toggleMutation = useMutation(
-		orpc.todo.toggle.mutationOptions({
+		orpc.todos.toggle.mutationOptions({
 			onSuccess: () => {
 				todos.refetch();
 			},
 		}),
 	);
 	const deleteMutation = useMutation(
-		orpc.todo.delete.mutationOptions({
+		orpc.todos.delete.mutationOptions({
 			onSuccess: () => {
 				todos.refetch();
 			},

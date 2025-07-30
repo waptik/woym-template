@@ -10,7 +10,7 @@ export interface AuthOptions {
 }
 
 export const sharedAuthConfig = (options: AuthOptions): BetterAuthOptions => {
-	console.log("[auth.shared] Creating shared auth config with options:", options);
+	console.log("[auth.shared] Creating shared auth config with options:", options.baseUrl);
 	const origins = (options.origins || "")
 		.split(",")
 		.map((origin) => origin.trim())

@@ -22,7 +22,7 @@ app
 	// start chained middleware
 	.use(logger())
 	.use(
-		"/*",
+		"*",
 		cors({
 			origin,
 			allowMethods: ["GET", "POST", "OPTIONS"],
@@ -30,6 +30,17 @@ app
 			credentials: true,
 		}),
 	)
+	.onError(async (err, c) => {
+		if (err instanceof Response) return err;
+		console.error("Error in Hono handler:", err);
+		return c.json(
+			{
+				error: "Internal Server Error",
+				message: err instanceof Error ? err.message : "Unknown error",
+			},
+			500,
+		);
+	})
 	.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw))
 	.use("/v1/*", async (c, next) => {
 		const context = await createContext({
@@ -65,7 +76,7 @@ app
 	})
 	// start normal routes
 	.get("/", (c) => {
-		return c.text("OK");
+		return c.text("Hello from the Hono server!");
 	})
 	.get("/cf", (c) => {
 		return c.json(c.req.raw.cf);
@@ -82,7 +93,7 @@ app
 		return c.json(
 			await openAPIGenerator.generate(appRouter, {
 				info: {
-					title: "TSHOE API",
+					title: "WOYM API",
 					version: "1.0.0",
 					description: "The TanstackStart Hono oRPC Expo API",
 				},

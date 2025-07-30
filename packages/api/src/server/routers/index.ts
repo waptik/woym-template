@@ -1,6 +1,6 @@
 import type { InferRouterInputs, InferRouterOutputs } from "@orpc/server";
 import { protectedProcedure, publicProcedure } from "#/lib/orpc";
-import { todoRouter } from "./todo";
+import { todosRouter } from "./todo";
 
 export const appRouter = {
 	healthCheck: publicProcedure.route({ method: "GET", path: "/health" }).handler(() => {
@@ -12,7 +12,7 @@ export const appRouter = {
 			user: context.session?.user,
 		};
 	}),
-	todo: todoRouter,
+	todos: todosRouter,
 };
 
 type AppRouter = typeof appRouter;
